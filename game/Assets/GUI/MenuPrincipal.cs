@@ -5,10 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MenuPrincipal : MonoBehaviour
 {
+    GameObject optionsMenu;
     // Start is called before the first frame update
     void Start()
     {
-        
+        optionsMenu = transform.Find("Menu Opciones").gameObject;
+        optionsMenu.SetActive(false);
     }
 
     // Update is called once per frame
@@ -23,5 +25,10 @@ public class MenuPrincipal : MonoBehaviour
         Application.Quit();
     }
 
+    public void Opciones()
+    {
+        optionsMenu.SetActive(true);
+        optionsMenu.GetComponentInChildren<MenuOpciones>().MoveMenuUp();
+    }
 
 }
