@@ -10,6 +10,8 @@ public class RayCast : MonoBehaviour
     public bool firstHit;  // Vale true mientras mantenemos un objeto vez que pulsamos sobre el objeto
     public Transform objAgarrado;
     public IPickable grabedBody;
+    public GameObject rayCastedObj;
+    [SerializeField] private GameObject manoInteract; 
     void Start()
     {
         //cam = this.transform;     // cam es una referencia a rotaci n posici n y escala de la camara 
@@ -20,7 +22,7 @@ public class RayCast : MonoBehaviour
     void Update()
     {
         //Si el objeto esta agarrado y se pulsa la E, se suelta el objeto y no se lanzan rayos
-        if (firstHit && Input.GetKeyDown(KeyCode.E))
+        if (firstHit && Input.GetKeyDown(KeyCode.Mouse0))
         {
             LetGo();
             return;
@@ -36,13 +38,24 @@ public class RayCast : MonoBehaviour
         
         // Si el rayo colisiona con un objeto...
         if (Physics.Raycast(cam.position + cam.forward*0.2f, cam.forward, out hit, distRayo)) {
+            rayCastedObj = hit.transform.gameObject;  
+            if (rayCastedObj.tag == "Hamburguesa")
+            {
+                manoInteract.SetActive(true);
+            }
+            else
+            {
+                manoInteract.SetActive(false);
+            }
+
             // Si se pulsa la tecla e sobre el objeto...
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 Debug.Log("Rayo colisiona con " + hit.transform.name);
                 grabedBody = hit.transform.GetComponent<IPickable>();
                 if(grabedBody == null)  return;
                 Debug.Log("Objeto encontrado");
+                manoInteract.SetActive(false);
                 if (!firstHit) {    // Si el objeto no estaba agarrado ---> Agarrar el objeto
                     grabedBody.PickUp(transform);
                     distObj = Vector3.Distance(hit.transform.position, cam.position);   // La primera vez nos quedamos con la distancia del momento de agarrarlo
@@ -51,6 +64,7 @@ public class RayCast : MonoBehaviour
                 }
             }
         }
+        
     }
 
 
