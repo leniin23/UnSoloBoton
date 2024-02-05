@@ -31,4 +31,8 @@ public class MenuPrincipal : MonoBehaviour
         optionsMenu.GetComponentInChildren<MenuOpciones>().MoveMenuUp();
     }
 
+    public void Jugar()
+    {
+        SceneManager.LoadScene("Diego", LoadSceneMode.Single);
+    }
 }
