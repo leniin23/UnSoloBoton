@@ -13,7 +13,7 @@ public class Cable : MonoBehaviour
 
     private LineRenderer lineRenderer;
     public Color color;
-    private bool isConnected;
+    public bool IsConnected { get; private set; }
     
     // Start is called before the first frame update
     void Start()
@@ -35,7 +35,7 @@ public class Cable : MonoBehaviour
     {
         //lineRenderer.SetPositions(new Vector3[]{origin.position, head.position});
         Restructure();
-        if(!isConnected) PullHead();
+        if(!IsConnected) PullHead();
     }
 
     private void PullHead()
@@ -48,7 +48,7 @@ public class Cable : MonoBehaviour
         }
         else
         {
-            isConnected = true;
+            IsConnected = true;
             rigidbodyHead.isKinematic = true;
             rigidbodyHead.Move(origin.position, Quaternion.Euler(new Vector3(0,0,90)));
         }
@@ -77,8 +77,8 @@ public class Cable : MonoBehaviour
     {
         Debug.Log("Connected");
         rigidbodyHead.isKinematic = true;
-        head.position = position;
-        isConnected = true;
+        rigidbodyHead.Move(position, Quaternion.Euler(0,0,90));;
+        IsConnected = true;
     }
 
     public Color GetColor()
@@ -88,25 +88,33 @@ public class Cable : MonoBehaviour
 
     public void Grab()
     {
+        rigidbodyHead.freezeRotation = true;
         rigidbodyHead.useGravity = false;
         rigidbodyHead.isKinematic = false;
-        isConnected = true;
+        IsConnected = true;
     }
 
     public void Release()
     {
+        rigidbodyHead.freezeRotation = false;
         rigidbodyHead.useGravity = true;
         rigidbodyHead.isKinematic = false;
-        isConnected = false;
+        IsConnected = false;
         rigidbodyHead.WakeUp();
     }
 
     public void Move(Vector3 pos)
     {
-            rigidbodyHead.Move(pos, Quaternion.identity);
-        if (!rigidbodyHead.SweepTest(pos - head.position, out var hit))
+        //rigidbodyHead.AddForce((pos-head.position)*0.5f, ForceMode.Impulse);
+        rigidbodyHead.velocity = (pos - head.position)*15f;
+        /*if (!rigidbodyHead.SweepTest(pos - head.position, out var hit, 2f))
         {
+            rigidbodyHead.Move(pos, Quaternion.identity);
         }
+        else
+        {
+            
+        }*/
         //head.position = new Vector3(pos.x,pos.y,head.position.z);
     }
 }
