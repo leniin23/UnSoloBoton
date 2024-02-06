@@ -7,17 +7,17 @@ public class spawnController : MonoBehaviour
 {
     public float speed;                 //velocidad de movimiento
     public float timeMoving;            //tiempo que se mueve en cinta
-    public float delay;                 //cada cuanto se mueve
+    public float delay;                 //cada cuanto se mueve por lo menos
     public GameObject objectToSpawn;    //va a ser prefab, objeto a spwanear
     
     private Vector3 initialPos;        
     private float timer;
     private float timer1;
-    private List<GameObject> panes =new();
+    private  GameObject bandeja ;
     private bool isMoving;
     void Start()
     {
-        initialPos = new Vector3(transform.position.x +2.72f,transform.position.y + 0.668f,transform.position.z);
+        initialPos = new Vector3(transform.position.x-1f,transform.position.y-0.4f ,transform.position.z);
         timer = 0;
         timer1 = 0;
     }
@@ -26,23 +26,23 @@ public class spawnController : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer > delay)
+        if (timer > delay )
         {
-            GameObject pan =spawn();
-            panes.Add(pan);
-            timer = 0;
-            isMoving = true;
+           
+            if(!Physics.Raycast(initialPos,Vector3.left,3))
+            {
+                bandeja =spawn();
+                timer = 0;
+                isMoving = true;
+            }
+            
         }
         
 
         if (isMoving)
         {
             timer1 += Time.deltaTime;
-            foreach (var pan in panes)
-            {
-                pan.transform.Translate(Time.deltaTime * speed * Vector3.left);
-            }
-
+            bandeja.transform.Translate(Time.deltaTime * speed * Vector3.left);
             if (timer1 > timeMoving)
             {
                 isMoving = false;
@@ -56,6 +56,14 @@ public class spawnController : MonoBehaviour
     {
         return Instantiate(objectToSpawn,initialPos,transform.rotation);
     }
-    
+
+    public float getSpeed()
+    {
+        return speed;
+    }
+    public float getTime()
+    {
+        return timeMoving;
+    }
     
 }
