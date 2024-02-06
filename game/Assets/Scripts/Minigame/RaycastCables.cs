@@ -27,7 +27,7 @@ public class RaycastCables : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit))
         {
-            Debug.Log("found " + hit.collider.gameObject + " at distance: " + hit.distance);
+            //Debug.Log("found " + hit.collider.gameObject + " at distance: " + hit.distance);
             return hit.collider.gameObject;
         }
         else
@@ -40,6 +40,7 @@ public class RaycastCables : MonoBehaviour
         {
             var obj = GetGameObjectAtPosition();
             if(obj == null) return;
+            if(obj.transform.parent == null)    return;
             cable = obj.transform.parent.GetComponent<Cable>();
             if(cable != null)
             {
@@ -49,9 +50,7 @@ public class RaycastCables : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            Debug.Log("sdfasf");
             if(cable == null) return;
-            Debug.Log("222222222222222222222222222");
             cable.Release();
             assigned = false;
             cable = null;

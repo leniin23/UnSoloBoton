@@ -28,7 +28,7 @@ public class Enchufe : MonoBehaviour
     }
     private void ProcessCollision(Collider other, bool exit = false)
     {
-        Debug.Log("Triggered");
+        //Debug.Log("Triggered");
         var enchufe = other.transform.parent.GetComponent<Cable>();
         if (enchufe.GetColor().Compare(color))
         {

@@ -10,6 +10,7 @@ namespace DefaultNamespace
     {
         [SerializeField] private List<Color> possibleColors;
         [SerializeField] private List<Transform> ingredientLights;
+        private List<List<Color>> colorList;
         private List<Color> mainColors;
         public int NOnBulbs { get; private set; }
 
@@ -33,6 +34,7 @@ namespace DefaultNamespace
                 return false;
             }
             mainColors.Add(color);
+            if(mainColors.Count == 3)   CheckIngredient();
             ReLightMainBulbs();
             return true;
         }
@@ -52,6 +54,32 @@ namespace DefaultNamespace
                 mainLights.GetChild(i).GetComponent<MeshRenderer>().material.color = nextColor;
             }
         }
+
+        private void CheckIngredient()
+        {
+            Debug.Log("Checking...");
+            var ingredient = -1;
+            for (int i = 0; i < colorList.Count; i++)
+            {
+                var isRecipe = true;
+                for (int j = 0; j < colorList[0].Count; j++)
+                {
+                    isRecipe &= !mainColors.TrueForAll(col =>!(Mathf.Approximately(col.r, colorList[i][j].r) && Mathf.Approximately(col.g, colorList[i][j].g) && Mathf.Approximately(col.b, colorList[i][j].b)));
+                    //isRecipe &= mainColors.Contains(colorList[i][j]);
+                    if (!isRecipe)
+                    {
+                        Debug.Log("No esta " + colorList[i][j]);
+                    }
+                }
+
+                if (isRecipe)
+                {
+                    ingredient = i;
+                    Debug.Log("Has puesto un " + ingredient);
+                }
+            }
+        }
+        
         private void CalculateRandomColors()
         {
             List<int> numbers = new List<int>();
@@ -61,7 +89,7 @@ namespace DefaultNamespace
             }
 
             var random = new Random();
-            var colorList = new List<List<Color>>();
+            colorList = new List<List<Color>>();
 
 
             for (var i = 0; i < lightbulbColors.Length; i++)
@@ -83,6 +111,7 @@ namespace DefaultNamespace
                     } while (colorList[i].Contains(nextColor));
                     colorList[i].Add(nextColor);
                 }
+                colorList[i] = colorList[i].OrderBy(_=>random.Next()).ToList();
             }
 
             for (var i = 0; i < ingredientLights.Count; i++)
@@ -99,7 +128,6 @@ namespace DefaultNamespace
                             continue;
                         }
                     }
-                    Debug.Log($"i {i}\tj {j}");
                     lightbulb.GetComponent<MeshRenderer>().material.color = colorList[i][j];
                 }
             }
