@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     
     private CharacterController controller;
-    private Camera camera;
+    private Camera playerCamera;
     
     [SerializeField] public Vector3 speed;
     [SerializeField] private Vector3 rotation  = Vector3.zero;
@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         controller = GetComponentInChildren<CharacterController>();
-        camera = GetComponentInChildren<Camera>();
+        playerCamera = GetComponentInChildren<Camera>();
         
         speed = Vector3.zero;
         bobSpeed = 10;
@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour
             var pos = new Vector3(0, 4.5f, 0);
             transform.position = pos;
             controller.transform.position = pos;
-            camera.transform.position = pos;
+            playerCamera.transform.position = pos;
         
             Physics.SyncTransforms();
         }
@@ -113,16 +113,16 @@ public class PlayerController : MonoBehaviour
         {
             //Player is moving
             timerBob += Time.deltaTime * bobSpeed;
-            var localPosition = camera.transform.localPosition;
-            camera.transform.localPosition = new Vector3(localPosition.x, defaultCameraHeight + Mathf.Sin(timerBob)  / 15f, localPosition.z);
+            var localPosition = playerCamera.transform.localPosition;
+            playerCamera.transform.localPosition = new Vector3(localPosition.x, defaultCameraHeight + Mathf.Sin(timerBob)  / 15f, localPosition.z);
         }
         else
         {
             //Idle
             timerBob = 0;
-            var localPosition = camera.transform.localPosition;
+            var localPosition = playerCamera.transform.localPosition;
             localPosition = new Vector3(localPosition.x, Mathf.Lerp(localPosition.y, defaultCameraHeight, Time.deltaTime * bobSpeed), localPosition.z);
-            camera.transform.localPosition = localPosition;
+            playerCamera.transform.localPosition = localPosition;
         }
 
         lastSpeedBob = realSpeedMag;
@@ -209,7 +209,7 @@ public class PlayerController : MonoBehaviour
     private void ManageRotation()
     {
         //Get current rotation
-        var rot = camera.transform.rotation.eulerAngles;
+        var rot = playerCamera.transform.rotation.eulerAngles;
         var rotY = 0f;
         var rotX = 0f;
         if (Cursor.visible)
@@ -270,7 +270,7 @@ public class PlayerController : MonoBehaviour
     private void Rotate()
     {
         transform.eulerAngles = new Vector3(0, rotation.y, 0);
-        camera.transform.eulerAngles = rotation;
+        playerCamera.transform.eulerAngles = rotation;
     }
     
 }

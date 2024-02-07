@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8454946941431557481
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 2d64f6918bf72ef40a38eb294a8f734b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2d64f6918bf72ef40a38eb294a8f734b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.544
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2d64f6918bf72ef40a38eb294a8f734b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2d64f6918bf72ef40a38eb294a8f734b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6.539
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2d64f6918bf72ef40a38eb294a8f734b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2d64f6918bf72ef40a38eb294a8f734b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2d64f6918bf72ef40a38eb294a8f734b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2d64f6918bf72ef40a38eb294a8f734b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2d64f6918bf72ef40a38eb294a8f734b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2d64f6918bf72ef40a38eb294a8f734b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2d64f6918bf72ef40a38eb294a8f734b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5900962568447495719, guid: 2d64f6918bf72ef40a38eb294a8f734b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe87793f3dc3bfc40b33d3c483528d94, type: 2}
+    - target: {fileID: -3130962699777990779, guid: 2d64f6918bf72ef40a38eb294a8f734b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: eb73e53f51313fa45b01b562ab8ad2df, type: 2}
+    - target: {fileID: -3071871728361585492, guid: 2d64f6918bf72ef40a38eb294a8f734b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe87793f3dc3bfc40b33d3c483528d94, type: 2}
+    - target: {fileID: 919132149155446097, guid: 2d64f6918bf72ef40a38eb294a8f734b,
+        type: 3}
+      propertyPath: m_Name
+      value: BurgerTernera Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 976943612084382746, guid: 2d64f6918bf72ef40a38eb294a8f734b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f4071d4802cf95a4598267c0c68bc7f7, type: 2}
+    - target: {fileID: 4196767281221059577, guid: 2d64f6918bf72ef40a38eb294a8f734b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe87793f3dc3bfc40b33d3c483528d94, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2d64f6918bf72ef40a38eb294a8f734b, type: 3}

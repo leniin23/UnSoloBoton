@@ -76,9 +76,11 @@ public class Cable : MonoBehaviour
     public void Connect(Vector3 position)
     {
         Debug.Log("Connected");
-        rigidbodyHead.isKinematic = true;
-        rigidbodyHead.Move(position, Quaternion.Euler(0,0,90));;
         IsConnected = true;
+        rigidbodyHead.isKinematic = true;
+        rigidbodyHead.Move(position, Quaternion.Euler(0,0,90));
+        rigidbodyHead.freezeRotation = true;
+        rigidbodyHead.useGravity = false;
     }
 
     public Color GetColor()
@@ -88,6 +90,7 @@ public class Cable : MonoBehaviour
 
     public void Grab()
     {
+        rigidbodyHead.constraints &= ~RigidbodyConstraints.FreezePosition;
         rigidbodyHead.freezeRotation = true;
         rigidbodyHead.useGravity = false;
         rigidbodyHead.isKinematic = false;
@@ -96,6 +99,8 @@ public class Cable : MonoBehaviour
 
     public void Release()
     {
+        var position = rigidbodyHead.position;
+        rigidbodyHead.MovePosition(new Vector3(position.x, position.y, 0f));
         rigidbodyHead.freezeRotation = false;
         rigidbodyHead.useGravity = true;
         rigidbodyHead.isKinematic = false;
