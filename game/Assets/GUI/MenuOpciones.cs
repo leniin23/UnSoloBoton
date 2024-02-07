@@ -9,6 +9,8 @@ public class MenuOpciones : MonoBehaviour
     // Start is called before the first frame update
     static GameObject exitButton;
     static Slider volumeSlider;
+    static Toggle fullscreenToggle;
+    static bool fullscreen;
     static float volumen = 1;
     //const float upPosition = 0;
     //float downPosition = Screen.height*-0.5f;
@@ -16,7 +18,13 @@ public class MenuOpciones : MonoBehaviour
     {
         exitButton=transform.Find("Salir").gameObject;
         volumeSlider = transform.Find("Slider").gameObject.GetComponent<Slider>();
+        fullscreenToggle = transform.Find("Toggle").gameObject.GetComponent<Toggle>();
+
         AudioListener.volume = volumen;
+        volumeSlider.value = volumen;
+
+        fullscreen = Screen.fullScreen;
+        fullscreenToggle.isOn = fullscreen;
     }
 
     // Update is called once per frame
@@ -49,8 +57,14 @@ public class MenuOpciones : MonoBehaviour
         Debug.Log(volumen);
     }
 
-    public void ToggleFullscreen(bool mode)
+    public void ToggleFullscreen()
     {
-        Screen.fullScreen = mode;
+        fullscreen = !fullscreen;   
+        Screen.fullScreen = fullscreen;
+    }
+
+    public void Salir()
+    {
+        SceneManager.LoadScene("escenaAntonio", LoadSceneMode.Single);
     }
 }

@@ -9,8 +9,18 @@ public class GameComponent : MonoBehaviour
 {
     [SerializeField] private ventanaDialogo v;
 
+    [SerializeField] private Camera camJugador;
+    [SerializeField] private Camera camMinijuego;
+    [SerializeField] GameObject optionsMenu;
+    [SerializeField] GameObject dialogBox;
+    bool canPause;
+
     void Start()
     {
+        Time.timeScale = 0;
+        optionsMenu.SetActive(false);
+        camJugador.enabled = true;
+        camMinijuego.enabled = false;
         v.LoadDialogue(new Dialog(new string[]
         {
             "Pufff, ya son las 23:30 qué ganas de echarme unas partiditas al solitario.",
@@ -34,7 +44,7 @@ public class GameComponent : MonoBehaviour
             null
         }, new Action[]
         {
-            Pause, null, null, null, null, null, null, null, null, null, null, null, null, null, null, UnPause
+            null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, StartGameAfterIntro
         })); ;
     }
 
@@ -45,9 +55,44 @@ public class GameComponent : MonoBehaviour
         {
             v.NextTip();
         }
+
+        else if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (Time.timeScale > 0.9f)
+            {
+                Pause();
+            }
+            else
+            {
+                UnPause();
+            }
+        }
+
+        else if (Input.GetKeyDown(KeyCode.C))
+        {
+            camJugador.enabled = !camJugador.enabled;
+            camMinijuego.enabled = !camMinijuego.enabled;
+        }
     }
 
-    void Pause(){   Time.timeScale = 0; }
-    void UnPause(){ Time.timeScale = 1; }
+    void Pause(){
+        if (canPause) {
+            optionsMenu.SetActive(true);
+            optionsMenu.GetComponentInChildren<MenuOpciones>().MoveMenuUp();
+        }
+    }
+    void UnPause(){
+        if (canPause) {
+            optionsMenu.SetActive(true);
+            optionsMenu.GetComponentInChildren<MenuOpciones>().MoveMenuDown();
+        }
+    }
+
+    void StartGameAfterIntro()
+    {
+        canPause = true;
+        dialogBox.SetActive(false);
+        UnPause();
+    }
 
 }

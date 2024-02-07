@@ -9,6 +9,7 @@ public class MenuPrincipal : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         optionsMenu = transform.Find("Menu Opciones").gameObject;
         optionsMenu.SetActive(false);
     }

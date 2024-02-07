@@ -64,7 +64,7 @@ public class ventanaDialogo : MonoBehaviour
         }
 
         gameObject.SetActive(_d.GetText(_tip) != "");
-
+        /*
         if (_d.GetPosition(_tip))
         {
             Vector2 pos = this.GetComponent<UnityEngine.UI.Image>().rectTransform.anchoredPosition;
@@ -74,7 +74,7 @@ public class ventanaDialogo : MonoBehaviour
         {
             Vector2 pos = this.GetComponent<UnityEngine.UI.Image>().rectTransform.anchoredPosition;
             this.GetComponent<UnityEngine.UI.Image>().rectTransform.anchoredPosition = new Vector2(pos.x, -350);
-        }
+        }*/
 
         if (_d.GetAction(_tip) != null) _d.GetAction(_tip)();
         
