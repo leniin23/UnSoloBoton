@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class RaycastCables : MonoBehaviour
 {
-    public static RaycastCables Instance;
+    public static RaycastCables instance;
     private Cable cable;
     public float ratio = 0.08f;
 
@@ -13,9 +13,9 @@ public class RaycastCables : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (Instance == null)
+        if (instance == null)
         {
-            Instance = this;
+            instance = this;
         }else
         {
             Destroy(this);
@@ -59,8 +59,8 @@ public class RaycastCables : MonoBehaviour
             if(assigned)
             {
                 //var movement = new Vector3(Input.GetAxisRaw("Mouse X")/Screen.currentResolution.width, Input.GetAxisRaw("Mouse Y")/Screen.currentResolution.width);
-                var movement = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                movement.z = 0f;
+                var movement = Camera.main!.ScreenToWorldPoint(Input.mousePosition);
+                movement.z = -1f;
                 cable.Move(movement);
             }
                 //cable.Move(new Vector3(Input.mousePosition.x, Input.mousePosition.y,0));

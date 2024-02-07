@@ -1051,7 +1051,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 56
+  m_Constraints: 48
   m_CollisionDetection: 3
 --- !u!1 &458348153
 GameObject:
@@ -1254,7 +1254,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 56
+  m_Constraints: 48
   m_CollisionDetection: 3
 --- !u!136 &559091474
 CapsuleCollider:
@@ -1744,8 +1744,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 4.0420036}
+  m_Center: {x: 0, y: 0, z: -1.5210023}
 --- !u!23 &667549364
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1924,8 +1924,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 9.129229, y: 2.224663, z: 1}
-  m_Center: {x: 4.0646133, y: -0.61233133, z: 0}
+  m_Size: {x: 9.129229, y: 2.224663, z: 5.988611}
+  m_Center: {x: 4.0646133, y: -0.6123313, z: -2.4943056}
 --- !u!1001 &692634783
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2097,7 +2097,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 56
+  m_Constraints: 48
   m_CollisionDetection: 3
 --- !u!136 &757826708
 CapsuleCollider:
@@ -2273,8 +2273,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 11.684385, y: 1.9148712, z: 1}
-  m_Center: {x: 5.3421936, y: 7.94, z: 0}
+  m_Size: {x: 11.684384, y: 1.9148715, z: 7.0672164}
+  m_Center: {x: 5.342194, y: 7.9400005, z: -3.0336087}
 --- !u!4 &851131452
 Transform:
   m_ObjectHideFlags: 0
@@ -2791,7 +2791,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 56
+  m_Constraints: 48
   m_CollisionDetection: 3
 --- !u!136 &1042663970
 CapsuleCollider:
@@ -4138,8 +4138,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.0000001, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.0000001, y: 1, z: 2.4174614}
+  m_Center: {x: 0, y: 0, z: -0.7087312}
 --- !u!23 &1835415395
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4488,7 +4488,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 56
+  m_Constraints: 48
   m_CollisionDetection: 3
 --- !u!136 &2025593483
 CapsuleCollider:

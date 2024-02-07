@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using UnityEngine;
 using Random = System.Random;
 
@@ -12,9 +13,10 @@ namespace DefaultNamespace
         [SerializeField] private List<Transform> ingredientLights;
         private List<List<Color>> colorList;
         private List<Color> mainColors;
-        public int NOnBulbs { get; private set; }
+        private static Random _random = new Random();
 
         private Color[] lightbulbColors;
+        
 
         private void Start()
         {
@@ -54,7 +56,13 @@ namespace DefaultNamespace
                 mainLights.GetChild(i).GetComponent<MeshRenderer>().material.color = nextColor;
             }
         }
-
+        
+        private bool CompareColors(Color ca, Color cb)
+        {
+            bool Compare(float a, float b) => (Mathf.Abs(a - b) <= 0.01f);
+            return Compare(ca.r, cb.r) && Compare(ca.g, cb.g) && Compare(ca.b, cb.b);
+        }
+        
         private void CheckIngredient()
         {
             Debug.Log("Checking...");
@@ -64,18 +72,26 @@ namespace DefaultNamespace
                 var isRecipe = true;
                 for (int j = 0; j < colorList[0].Count; j++)
                 {
-                    isRecipe &= !mainColors.TrueForAll(col =>!(Mathf.Approximately(col.r, colorList[i][j].r) && Mathf.Approximately(col.g, colorList[i][j].g) && Mathf.Approximately(col.b, colorList[i][j].b)));
-                    //isRecipe &= mainColors.Contains(colorList[i][j]);
-                    if (!isRecipe)
+                    var isContained = false;
+                    foreach (var mainColor in mainColors)
                     {
-                        Debug.Log("No esta " + colorList[i][j]);
+                        isContained = CompareColors(mainColor, colorList[i][j]);
+                        if (isContained)
+                        {
+                            break;
+                        }
+                        Debug.Log(mainColor + " - " + colorList[i][j]);
                     }
+                    //Debug.Log(isContained);
+                    isRecipe &= isContained;
+                    //isRecipe &= mainColors.Contains(colorList[i][j]);
                 }
 
                 if (isRecipe)
                 {
                     ingredient = i;
-                    Debug.Log("Has puesto un " + ingredient);
+                    Debug.LogWarning("Has puesto un " + ingredient);
+                    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!AQUI VA EL CODIGO ; 0 = ternera; 1 = vegetal; 2 = pollo
                 }
             }
         }
@@ -88,13 +104,12 @@ namespace DefaultNamespace
                 numbers.Add(i);
             }
 
-            var random = new Random();
             colorList = new List<List<Color>>();
 
 
             for (var i = 0; i < lightbulbColors.Length; i++)
             {
-                var n = random.Next(numbers.Count);
+                var n = _random.Next(numbers.Count);
                 colorList.Add(new List<Color>());
                 colorList[i].Add(possibleColors[numbers[n]]);
                 numbers.RemoveAt(n);
@@ -106,12 +121,12 @@ namespace DefaultNamespace
                     Color nextColor;
                     do
                     {
-                        var n = random.Next(numbers.Count);
+                        var n = _random.Next(numbers.Count);
                         nextColor = possibleColors[numbers[n]];
                     } while (colorList[i].Contains(nextColor));
                     colorList[i].Add(nextColor);
                 }
-                colorList[i] = colorList[i].OrderBy(_=>random.Next()).ToList();
+                colorList[i] = colorList[i].OrderBy(_=>_random.Next()).ToList();
             }
 
             for (var i = 0; i < ingredientLights.Count; i++)

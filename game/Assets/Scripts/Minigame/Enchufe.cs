@@ -14,8 +14,7 @@ public class Enchufe : MonoBehaviour
     void Start()
     {
         manager = transform.parent.parent.GetComponent<MachineManager>();
-        var renderer = GetComponent<MeshRenderer>();
-        renderer.material.color = color;
+        GetComponent<MeshRenderer>().material.color = color;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,7 +23,14 @@ public class Enchufe : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        ProcessCollision(other, true);
+        //ProcessCollision(other, true);
+        var cable = other.transform.GetComponent<Rigidbody>();
+        if(cable == null) return;
+        if (!cable.isKinematic)
+        {
+            Debug.Log("EXIT");
+            manager.TurnOffMainBulb(color);
+        }
     }
     private void ProcessCollision(Collider other, bool exit = false)
     {
@@ -34,7 +40,6 @@ public class Enchufe : MonoBehaviour
         {
             if (enchufe.IsConnected)
             {
-                if(exit) manager.TurnOffMainBulb(color);
                 return;
             }
             if(manager.LightMainBulb(color))
