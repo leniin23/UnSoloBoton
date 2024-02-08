@@ -24,7 +24,6 @@ public class GameComponent : MonoBehaviour
         camMinijuego.enabled = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        //SceneManager.LoadScene("Minigame", LoadSceneMode.Additive);
         v.LoadDialogue(new Dialog(new string[]
         {
             "Pufff, ya son las 23:30 qué ganas de echarme unas partiditas al solitario.",
