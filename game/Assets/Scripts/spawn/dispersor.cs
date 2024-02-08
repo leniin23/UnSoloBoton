@@ -22,6 +22,7 @@ public class dispersor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (move && timer<timeMoving && objeto)
         {
             timer += Time.deltaTime;

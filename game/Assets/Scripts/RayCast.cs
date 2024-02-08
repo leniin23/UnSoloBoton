@@ -40,7 +40,7 @@ public class RayCast : MonoBehaviour
         // Si el rayo colisiona con un objeto...
         if (Physics.Raycast(cam.position + cam.forward*0.2f, cam.forward, out hit, distRayo)) {
             rayCastedObj = hit.transform.gameObject;  
-            if (rayCastedObj.tag == "Hamburguesa")
+            if (rayCastedObj.tag == "Hamburguesa" || rayCastedObj.tag=="IniciarMinijuego")
             {
                 manoInteract.SetActive(true);
             }

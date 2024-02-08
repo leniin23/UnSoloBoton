@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Undefined
   - Lightbulb
+  - Hamburguesa
+  - bandeja
+  - IniciarMinijuego
   layers:
   - Default
   - TransparentFX

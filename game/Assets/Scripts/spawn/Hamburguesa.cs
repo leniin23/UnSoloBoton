@@ -23,11 +23,12 @@ public class Hamburguesa : MonoBehaviour
     {
         
         if (bandejaMove)
-        {
+        {Debug.Log(spawn.getSpeed());
             timer += Time.deltaTime;
             if (timer < spawn.getTime())
             {
                 bandeja.transform.Translate(spawn.getSpeed() * Time.deltaTime * Vector3.left);
+                
             }
             else
             {
@@ -42,8 +43,10 @@ public class Hamburguesa : MonoBehaviour
     {
         if (other.gameObject.CompareTag("bandeja"))
         {
+            Debug.Log(gameObject.GetComponent<BandejaInfo>() == null);
             bandeja = other.gameObject;
             gameObject.transform.parent = other.gameObject.transform;
+            //transform.parent.SetParent(other.transform);
             other.gameObject.GetComponent<BandejaInfo>().setHamburguesa();
             bandejaMove = true;
         }
