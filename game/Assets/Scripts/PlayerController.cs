@@ -57,13 +57,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Tab))
-        {
-            Cursor.lockState = CursorLockMode.Confined;
-            Cursor.visible = true;
-            return;
-        }
-        Cursor.visible = false;
+        
         
         ManageInput(ref speed);
         ManageRotation();
@@ -218,7 +212,7 @@ public class PlayerController : MonoBehaviour
             {
                 
                 //si se pulsa y no esta esccondido el raton, se esconde
-                Cursor.visible = false; 
+                //Cursor.visible = false; 
                 
                 
             }
@@ -235,7 +229,7 @@ public class PlayerController : MonoBehaviour
             
             //Si el raton esta escondido, se coloca en el centro para poder moverlo indefinidamente a los lados
             //Mouse.current.WarpCursorPosition(new Vector2(Screen.width / 2f, Screen.height / 2f));
-            Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.lockState = CursorLockMode.Locked;
         }
         
         rot += new Vector3(rotX, rotY,0f);

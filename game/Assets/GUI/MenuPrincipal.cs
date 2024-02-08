@@ -34,6 +34,6 @@ public class MenuPrincipal : MonoBehaviour
 
     public void Jugar()
     {
-        SceneManager.LoadScene("Diego", LoadSceneMode.Single);
+        SceneManager.LoadScene("Minigame", LoadSceneMode.Single);
     }
 }

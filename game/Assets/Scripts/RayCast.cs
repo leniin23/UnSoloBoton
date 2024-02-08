@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RayCast : MonoBehaviour
 {
+    
     [SerializeField] private Transform cam;   // Objeto que contiene rotacion posicion y escala
     public float distRayo = 3;  // Tope de distancia a la que puedes agarrar objetos
     public float distObj;  // Distancia a la que se va a situar el objeto de la c mara al agarrarlo

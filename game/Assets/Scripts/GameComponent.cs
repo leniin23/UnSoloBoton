@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GameComponent : MonoBehaviour
 {
@@ -21,6 +22,9 @@ public class GameComponent : MonoBehaviour
         optionsMenu.SetActive(false);
         camJugador.enabled = true;
         camMinijuego.enabled = false;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        //SceneManager.LoadScene("Minigame", LoadSceneMode.Additive);
         v.LoadDialogue(new Dialog(new string[]
         {
             "Pufff, ya son las 23:30 qué ganas de echarme unas partiditas al solitario.",
@@ -70,6 +74,16 @@ public class GameComponent : MonoBehaviour
 
         else if (Input.GetKeyDown(KeyCode.C))
         {
+            if (Cursor.visible)
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+            else
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.Confined;
+            }
             camJugador.enabled = !camJugador.enabled;
             camMinijuego.enabled = !camMinijuego.enabled;
         }
