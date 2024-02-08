@@ -4,7 +4,7 @@ namespace DefaultNamespace
 {
     public class Machine : MonoBehaviour, IPickable
     {
-        public void PickUp(Transform father)
+        public void PickUp(Transform father, IPickable other)
         {
             //Lock fathers movement
             //Open minigame interface

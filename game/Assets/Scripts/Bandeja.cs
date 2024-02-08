@@ -7,12 +7,14 @@ namespace DefaultNamespace
     {
         private Rigidbody body;
         private Collider collider;
-        public void PickUp(Transform father)
+        public void PickUp(Transform father, IPickable other)
         {
+            RayCast.instance.LetGo();
+            RayCast.instance.PickUp(this);
             transform.SetParent(father);
             transform.localPosition = Vector3.zero;
             transform.rotation = Quaternion.identity;
-            transform.position += father.forward + father.right + father.up*0.25f;
+            transform.position += father.forward + father.right + father.up*0.35f;
             //collider = transform.GetComponent<Collider>();
             //collider.isTrigger = true;
             body.isKinematic = true;
