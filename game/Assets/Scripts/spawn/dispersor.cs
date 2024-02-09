@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class dispersor : MonoBehaviour
 {
-    public GameObject[] objetosACrear;
+    public GameObject objetoACrear;
     private GameObject objeto;
     public float timeMoving;
     private bool move;
@@ -35,10 +35,10 @@ public class dispersor : MonoBehaviour
         }
     }
 
-    public void setMoveTrue(int ingredient)
+    public void setMoveTrue()
     {
         move = true;
-        objeto = Instantiate(objetosACrear[ingredient], position , transform.rotation);
+        objeto = Instantiate(objetoACrear, position , transform.rotation);
     }
     
 }

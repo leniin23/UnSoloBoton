@@ -15,7 +15,7 @@ namespace DefaultNamespace.spawn
         void OnMouseDown()
         {
             Debug.Log("click");
-            dispersor.GetComponent<dispersor>().setMoveTrue(0);
+            dispersor.GetComponent<dispersor>().setMoveTrue();
         }
     }
 }

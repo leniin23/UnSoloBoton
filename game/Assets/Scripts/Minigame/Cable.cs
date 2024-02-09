@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
@@ -122,12 +121,5 @@ public class Cable : MonoBehaviour
             
         }*/
         //head.position = new Vector3(pos.x,pos.y,head.position.z);
-    }
-
-    public void ResetCable()
-    {
-        IsConnected = false;
-        //rigidbodyHead.isKinematic = false;
-        rigidbodyHead.position = origin.position;
     }
 }

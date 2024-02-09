@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RayCast : MonoBehaviour
 {
-    private bool Pausa { get; set; }
     public static RayCast instance;
     [SerializeField] private Transform cam;   // Objeto que contiene rotacion posicion y escala
     public float distRayo = 3;  // Tope de distancia a la que puedes agarrar objetos
@@ -21,7 +20,6 @@ public class RayCast : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Pausa)   return;
         //Si el objeto esta agarrado y se pulsa la E, se suelta el objeto y no se lanzan rayos
         /*if (firstHit && Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -50,7 +48,6 @@ public class RayCast : MonoBehaviour
                 //Si no estamos mirando a nada interesante no tenemos que hacer nada
                 if(lookAt == null)
                 {
-                    LetGo();
                     return;
                 }
                 //Interactuamos con el objeto
@@ -68,12 +65,6 @@ public class RayCast : MonoBehaviour
         
     }
 
-    public void SetPausa(bool newPause)
-    {
-        Pausa = newPause;
-        lookAt = null;
-        manoInteract.SetActive(false);
-    }
     public void PickUp(IPickable item)
     {
         grabedBody = item;
