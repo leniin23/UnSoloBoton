@@ -28,7 +28,7 @@ public class GameComponent : MonoBehaviour
         {
             "Pufff, ya son las 23:30 qué ganas de echarme unas partiditas al solitario.",
             "...",
-            "¿Uh? ¿Qué es esto?",
+            "NI",
             "¡Oh no! ¡Se me ha vuelto a olvidar este año corregir los trabajos! Y las actas cierran esta noche. ¡Tengo que darme prisa!",
             "Vale... ¿Cómo se hacía esto de corregir?",
             "Vale, si no recuerdo mal, las presentaciones de mis alumnos irán apareciendo en la pantalla de mi precioso ordenador.",
