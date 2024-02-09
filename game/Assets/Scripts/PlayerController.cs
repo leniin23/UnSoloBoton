@@ -9,10 +9,11 @@ public class PlayerController : MonoBehaviour
     
     private CharacterController controller;
     private Camera playerCamera;
+    private bool pause;
     
     [SerializeField] public Vector3 speed;
     [SerializeField] private Vector3 rotation  = Vector3.zero;
-
+    
     [Space (15)]
     [Header("Ground Movement")]
     [SerializeField] public float walkingSpeed;
@@ -57,7 +58,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        
+        if(pause)   return;
         
         ManageInput(ref speed);
         ManageRotation();
@@ -265,6 +266,12 @@ public class PlayerController : MonoBehaviour
     {
         transform.eulerAngles = new Vector3(0, rotation.y, 0);
         playerCamera.transform.eulerAngles = rotation;
+    }
+
+    public void SetPause(bool state)
+    {
+        pause = state;
+        RayCast.instance.SetPausa(state);
     }
     
 }

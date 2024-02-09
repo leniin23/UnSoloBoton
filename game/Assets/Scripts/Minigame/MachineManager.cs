@@ -9,24 +9,34 @@ namespace DefaultNamespace
 {
     public class MachineManager : MonoBehaviour
     {
+        public static MachineManager instance;
         [SerializeField] private List<Color> possibleColors;
         [SerializeField] private List<Transform> ingredientLights;
         private List<List<Color>> colorList;
         private List<Color> mainColors;
         private static Random _random = new Random();
-
+        private Machine callback;
         private Color[] lightbulbColors;
-        
 
+
+        public void ResetColors(Machine callbackIn)
+        {
+            callback = callbackIn;
+            mainColors.Clear();
+            CalculateRandomColors();
+        }
         private void Start()
         {
+            if (instance == null) instance = this;
+            else Destroy(this);
+            
             lightbulbColors = new Color[ingredientLights.Count];
             mainColors = new List<Color>();
             for (var i = 0; i < ingredientLights.Count; i++)
             {
                 lightbulbColors[i] = Color.gray;
             }
-            CalculateRandomColors();
+            //CalculateRandomColors();
         }
 
         public bool LightMainBulb(Color color)
@@ -92,6 +102,7 @@ namespace DefaultNamespace
                     ingredient = i;
                     Debug.LogWarning("Has puesto un " + ingredient);
                     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!AQUI VA EL CODIGO ; 0 = ternera; 1 = vegetal; 2 = pollo
+                    callback.ServeIngredient(ingredient);
                 }
             }
         }

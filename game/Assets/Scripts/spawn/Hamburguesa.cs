@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using spawn;
 using UnityEngine;
 
 public class Hamburguesa : MonoBehaviour
