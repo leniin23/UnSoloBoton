@@ -38,7 +38,7 @@ namespace DefaultNamespace
         {
             //Hacer que spawnee el ingrediente correcto por favor lenin dime como se hace por favor 
             //(El spawner se llama "spawner")
-            spawner.setMoveTrue();
+            spawner.setMoveTrue(ingredient);
             //Liberar el movimiento
             LetGo();
         }
