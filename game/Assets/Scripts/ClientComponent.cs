@@ -18,6 +18,14 @@ public class ClientComponent : MonoBehaviour
 
     private float tiempoLimite;
     public float maxTime;
+    public float timePercent;
+    private bool angryBool;
+
+    private float tiempoCooldown;
+    [SerializeField] private float maxCooldown;
+
+    public int speed; 
+    public int estado = 0;
 
     private int hamburguesa, complemento, bebida; 
     // h.Ternera 0, h.Pollo 1, h.Vegana 2
@@ -46,16 +54,64 @@ public class ClientComponent : MonoBehaviour
         transform.LookAt(transform.position + targetCamera.transform.rotation * Vector3.left);
         transform.Rotate(vec, Space.World);
 
-        tiempoLimite -= Time.deltaTime;
-        rectanguloTimer.transform.position = new Vector3(
-            -(tiempoLimite/maxTime),
-            rectanguloTimer.transform.position.y,
-            rectanguloTimer.transform.position.z);
+        
+        timePercent = tiempoLimite / maxTime;
+        rectanguloTimer.transform.localScale = new Vector3(
+            timePercent*2,
+            rectanguloTimer.transform.localScale.y,
+            rectanguloTimer.transform.localScale.z);
+
+
+        //moverse esto se tendria que hacer con estados pero que pereza
+        if (estado != 0)
+        {
+            if (estado == 1) //bajar
+            {
+                transform.position = new Vector3(
+                transform.position.x,
+                transform.position.y - speed * Time.deltaTime,
+                transform.position.z);
+                if (transform.position.y <= -1f){ Debug.Log("joder macho"); tiempoCooldown = maxCooldown; estado = 3;}
+            }
+            else if (estado == 2) //subir
+            {
+                transform.position = new Vector3(
+                transform.position.x,
+                transform.position.y + speed * Time.deltaTime,
+                transform.position.z);
+                if (transform.position.y >= 3f) { estado = 0; }
+            }
+            else if(estado == 3) //cooldown
+            {
+                tiempoCooldown -= Time.deltaTime;
+                if (tiempoCooldown<=0)
+                {
+                    varId = _random.Next(6);
+                    CambiarSprite(varId);
+                    NuevoPedido();
+                    estado = 2;
+                }
+            }
+        }
+        else
+        {
+            tiempoLimite -= Time.deltaTime;
+            if (tiempoLimite <= 0)
+            {
+                Irse(false);
+                rectanguloTimer.gameObject.SetActive(false);
+            }
+            if (!angryBool && tiempoLimite < (maxTime * 0.45))
+            {
+                Enfadarse();
+            }
+        }
     }
 
     private void Enfadarse()
     {
         CambiarSprite(varId + 6);
+        angryBool = true;
     }
 
     private void CambiarSprite(int i)
@@ -65,7 +121,14 @@ public class ClientComponent : MonoBehaviour
 
     private void NuevoPedido()
     {
-        foreach(Transform child in pedido.transform)
+        pedido.gameObject.SetActive(true);
+        rectanguloTimer.gameObject.SetActive(true);
+        rectanguloTimer.transform.localScale = new Vector3(
+            2f,
+            rectanguloTimer.transform.localScale.y,
+            rectanguloTimer.transform.localScale.z);
+
+        foreach (Transform child in pedido.transform)
         {
             child.gameObject.SetActive(false);
         }
@@ -80,7 +143,19 @@ public class ClientComponent : MonoBehaviour
         tiempoLimite = maxTime;
     }
 
-    private void Irse() { }
-    private void Llegar() { }
+    private void Irse(bool a) {
+        pedido.gameObject.SetActive(false);
+        rectanguloTimer.gameObject.SetActive(false);
+        if (a)
+        {
+            //llamar a observers y quitar estrellas
+        }
+        else
+        {
+            //comprobar ingredientes
+        }
+        estado = 1;
+    }
+
 }
 
