@@ -90,7 +90,7 @@ namespace DefaultNamespace
                         {
                             break;
                         }
-                        Debug.Log(mainColor + " - " + colorList[i][j]);
+                        //Debug.Log(mainColor + " - " + colorList[i][j]);
                     }
                     //Debug.Log(isContained);
                     isRecipe &= isContained;
@@ -100,7 +100,7 @@ namespace DefaultNamespace
                 if (isRecipe)
                 {
                     ingredient = i;
-                    Debug.LogWarning("Has puesto un " + ingredient);
+                    //Debug.LogWarning("Has puesto un " + ingredient);
                     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!AQUI VA EL CODIGO ; 0 = ternera; 1 = vegetal; 2 = pollo
                     callback.ServeIngredient(ingredient);
                 }

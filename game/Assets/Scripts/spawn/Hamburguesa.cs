@@ -42,14 +42,21 @@ public class Hamburguesa : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("colisiontriger " + other.gameObject.name );
         if (other.gameObject.CompareTag("bandeja"))
         {
-            Debug.Log(gameObject.GetComponent<BandejaInfo>() == null);
+            
+            Debug.Log("gameObject.GetComponent<BandejaInfo>() == null");
             bandeja = other.gameObject;
             gameObject.transform.parent = other.gameObject.transform;
             //transform.parent.SetParent(other.transform);
             other.gameObject.GetComponent<BandejaInfo>().setHamburguesa();
             bandejaMove = true;
         }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        Debug.Log("colision " + other.gameObject.name );
     }
 }
