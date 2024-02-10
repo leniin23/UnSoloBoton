@@ -28,18 +28,20 @@ namespace spawn
             timer += Time.deltaTime;
             if (timer > delay)
             {
-
-                if (!Physics.Raycast(initialPos, Vector3.left, 3))
-                {
-                    bandeja = spawn();
-                    timer = 0;
-                    isMoving = true;
-                }
+                bandeja = spawn();
+                isMoving = true;
+                timer = 0;
+                //if (!Physics.Raycast(initialPos, Vector3.left, 3))
+                //{
+                //    bandeja = spawn();
+                //    timer = 0;
+                //    isMoving = true;
+                //}
 
             }
 
 
-            if (isMoving)
+            if (isMoving && bandeja)
             {
                 timer1 += Time.deltaTime;
                 bandeja.transform.Translate(Time.deltaTime * speed * Vector3.left);

@@ -32,6 +32,11 @@ public class dispersor : MonoBehaviour
         {
             timer = 0;
             move = false;
+          
+           if (objeto&&!objeto.transform.parent)
+           {
+               Destroy(objeto);
+           }
         }
     }
 
