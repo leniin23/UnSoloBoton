@@ -43,7 +43,6 @@ public class RayCast : MonoBehaviour
         {
             //Actualizamos a que estamos mirando
             lookAt = hit.transform.GetComponent<IPickable>();
-
             // Si se pulsa la tecla e sobre el objeto...
             if (isMousePressed)
             {

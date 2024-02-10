@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using DefaultNamespace;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = System.Random;
 
-public class ClientComponent : MonoBehaviour
+public class ClientComponent : MonoBehaviour, IPickable
 {
     public static Transform target;
     [SerializeField] Sprite[] variacionesClientes;
@@ -150,14 +152,42 @@ public class ClientComponent : MonoBehaviour
         rectanguloTimer.gameObject.SetActive(false);
         if (a)
         {
-            //llamar a observers y quitar estrellas
+            //Oh baby all bien all correcto
         }
         else
         {
-            //comprobar ingredientes
+            //llamar a observers y quitar estrellas
         }
         estado = 1;
     }
 
+    public void PickUp(Transform father, IPickable itemInHand)
+    {
+        Debug.Log("hOLIS 1");
+        if(itemInHand == null)  return;
+        var info = itemInHand.GetTransform().GetComponent<BandejaInfo>();
+        if(info == null) return;
+        Debug.Log("hOLIS 2");
+        var isSameInfo = info.hamburguesa == hamburguesa && info.complemtentos == complemento && info.bebida == bebida;
+        
+        RayCast.instance.LetGo();
+        itemInHand.GetTransform().SetParent(transform);
+        itemInHand.PickUp(transform);
+        /*var body = itemInHand.GetTransform().GetComponent<Rigidbody>();
+        body.isKinematic = true;
+        itemInHand.GetTransform().position = (transform1.position + transform1.forward*0.5f - transform1.up*0.8f + transform1.right*0.05f);*/
+        var transform1 = transform;
+        itemInHand.GetTransform().position = (transform1.position + transform1.forward*0.5f - transform1.up*0.8f + transform1.right*0.05f);
+        Irse(isSameInfo);
+    }
+
+    public void LetGo()
+    {
+        throw new NotImplementedException();
+    }
+    public Transform GetTransform()
+    {
+        return transform;
+    }
 }
 

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class BandejaInfo : MonoBehaviour
 {
-    private bool hamburguesa;
-    private bool bebida;
-    private bool complemtentos;
+    public int hamburguesa { get; private set; } = 0;
+    public int bebida{ get; private set; }= 0;
+    public int complemtentos{ get; private set; }= 0;
     
     // Start is called before the first frame update
     void Start()
@@ -20,17 +20,17 @@ public class BandejaInfo : MonoBehaviour
         
     }
 
-    public void setHamburguesa()
+    public void setHamburguesa(int i = 0)
     {
-        hamburguesa = true;
+        hamburguesa = i;
     }
-    public void setBebida()
+    public void setBebida(int i = 0)
     {
-        bebida = true;
+        bebida = i;
     }
-    public void setComplementos()
+    public void setComplementos(int i = 0)
     {
-        complemtentos = true;
+        complemtentos = i;
     }
 
     void OnCollisionEnter(Collision other)

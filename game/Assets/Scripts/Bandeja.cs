@@ -7,8 +7,11 @@ namespace DefaultNamespace
     {
         private Rigidbody body;
         private Collider collider;
+        private bool canBeTaken;
         public void PickUp(Transform father, IPickable other)
         {
+            if(!canBeTaken) return;
+            canBeTaken = false;
             RayCast.instance.LetGo();
             RayCast.instance.PickUp(this);
             transform.SetParent(father);
@@ -22,6 +25,7 @@ namespace DefaultNamespace
 
         private void Start()
         {
+            canBeTaken = true;
             body = transform.GetComponent<Rigidbody>();
             collider = transform.GetComponent<Collider>();
             if (body == null)
@@ -37,7 +41,12 @@ namespace DefaultNamespace
             transform.position = transform.parent.position + transform.parent.forward;
             transform.parent = null;
             body.isKinematic = false;
+            canBeTaken = true;
             //collider.isTrigger = false;
+        }
+        public Transform GetTransform()
+        {
+            return transform;
         }
     }
 }

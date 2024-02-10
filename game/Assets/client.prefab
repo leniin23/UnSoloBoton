@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3872471552794856145}
   - component: {fileID: 2410739502170709115}
+  - component: {fileID: 1221943202388264182}
   m_Layer: 0
   m_Name: client
   m_TagString: Untagged
@@ -61,11 +62,33 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 12f7e7a35f5f9804f8e73ddc6fc74751, type: 3}
   - {fileID: 21300000, guid: 75162a6237c03a54186ede5d827e9671, type: 3}
   varId: 0
+  rectanguloTimerRojo: {fileID: 1906503584296868070}
   maxTime: 0
   timePercent: 0
   maxCooldown: 5
   speed: 4
   estado: 0
+--- !u!65 &1221943202388264182
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185655317130159997}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.8746338, y: 2.3121336, z: 0.17828369}
+  m_Center: {x: -0.6161499, y: -1.0611173, z: 0.028533936}
 --- !u!1 &1258912319371441618
 GameObject:
   m_ObjectHideFlags: 0
