@@ -8,7 +8,7 @@ namespace DefaultNamespace
     {
         private static Camera _gameCamera;
         private static Camera _playerCamera;
-        
+        [SerializeField] private int type;
         [SerializeField] private dispersor spawner;
         private PlayerController player;
 
@@ -49,6 +49,11 @@ namespace DefaultNamespace
             _playerCamera.enabled = !_playerCamera.enabled;
             _gameCamera.enabled = !_gameCamera.enabled;
             player.SetPause(false);
+        }
+
+        public Transform GetTransform()
+        {
+            return transform;
         }
     }
 }
