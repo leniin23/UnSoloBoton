@@ -24,6 +24,7 @@ namespace DefaultNamespace
             player = father.GetComponent<PlayerController>();
             if(player == null) return;
             player.SetPause(true);
+            //Time.timeScale = 1f;
             //Open minigame interface
             MinigameManager.instance.StartGame(this);
             //Change camera

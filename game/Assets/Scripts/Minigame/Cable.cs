@@ -9,7 +9,7 @@ public class Cable : MonoBehaviour
 {
     private Transform origin;
 
-    private Transform head;
+    [SerializeField]private Transform head;
     private Rigidbody rigidbodyHead;
 
     private LineRenderer lineRenderer;
@@ -28,7 +28,7 @@ public class Cable : MonoBehaviour
         lineRenderer.startColor = color;
         lineRenderer.startWidth = 0.1f;
         lineRenderer.endWidth = 0.1f;
-        head.GetComponent<MeshRenderer>().material = lineRenderer.material;
+        //head.GetComponent<MeshRenderer>().material = lineRenderer.material;
     }
 
     // Update is called once per frame
