@@ -70,19 +70,19 @@ public class ClientComponent : MonoBehaviour, IPickable
         {
             if (estado == 1) //bajar
             {
-                transform.position = new Vector3(
-                transform.position.x,
-                transform.position.y - speed * Time.deltaTime,
-                transform.position.z);
-                if (transform.position.y <= -1f) { Debug.Log("joder macho"); tiempoCooldown = maxCooldown; estado = 3; }
+                transform.localPosition = new Vector3(
+                transform.localPosition.x,
+                transform.localPosition.y - speed * Time.deltaTime,
+                transform.localPosition.z);
+                if (transform.localPosition.y <= -4f) { Debug.Log("joder macho"); tiempoCooldown = maxCooldown; estado = 3; }
             }
             else if (estado == 2) //subir
             {
-                transform.position = new Vector3(
-                transform.position.x,
-                transform.position.y + speed * Time.deltaTime,
-                transform.position.z);
-                if (transform.position.y >= 3f) { estado = 0; }
+                transform.localPosition = new Vector3(
+                transform.localPosition.x,
+                transform.localPosition.y + speed * Time.deltaTime,
+                transform.localPosition.z);
+                if (transform.localPosition.y >= 0) { estado = 0; }
             }
             else if (estado == 3) //cooldown
             {
@@ -124,6 +124,7 @@ public class ClientComponent : MonoBehaviour, IPickable
 
     private void NuevoPedido()
     {
+        angryBool = false;
         pedido.gameObject.SetActive(true);
         rectanguloTimer.gameObject.SetActive(true);
         rectanguloTimer.transform.localScale = new Vector3(
