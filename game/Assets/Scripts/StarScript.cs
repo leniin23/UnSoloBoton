@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StarScript : MonoBehaviour, IObserver<int>
+public class StarScript : MonoBehaviour
 {
-    
+    public static StarScript instance;
     // Start is called before the first frame update
     private int life = 10;
     [SerializeField] private float halfStarSize;
@@ -13,32 +13,16 @@ public class StarScript : MonoBehaviour, IObserver<int>
     void Start()
     {
         halfStarSize = starColors.localScale.x*1.019f;
+        if (instance == null) instance = this;
+        else Destroy(this);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            OnNext(1);
-        }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            OnNext(2);
-        }
+        
     }
-
-    public void OnCompleted()
-    {
-        //Finish game
-    }
-
-    public void OnError(Exception error)
-    {
-        //throw new NotImplementedException();
-        Debug.LogError(error.Message);
-    }
-
+    
     public void OnNext(int value)
     {
         Debug.Log("Value: " + value);

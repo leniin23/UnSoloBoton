@@ -101,7 +101,7 @@ public class ClientComponent : MonoBehaviour, IPickable
             tiempoLimite -= Time.deltaTime;
             if (tiempoLimite <= 0)
             {
-                Irse(false);
+                Irse(false,2);
                 rectanguloTimer.gameObject.SetActive(false);
             }
             if (!angryBool && tiempoLimite < (maxTime * 0.45))
@@ -147,7 +147,7 @@ public class ClientComponent : MonoBehaviour, IPickable
         tiempoLimite = maxTime;
     }
 
-    private void Irse(bool a)
+    private void Irse(bool a, int stars = 2)
     {
         pedido.gameObject.SetActive(false);
         rectanguloTimer.gameObject.SetActive(false);
@@ -158,6 +158,7 @@ public class ClientComponent : MonoBehaviour, IPickable
         else
         {
             //llamar a observers y quitar estrellas
+            StarScript.instance.OnNext(stars);
         }
         estado = 1;
     }
@@ -179,7 +180,7 @@ public class ClientComponent : MonoBehaviour, IPickable
         itemInHand.GetTransform().position = (transform1.position + transform1.forward*0.5f - transform1.up*0.8f + transform1.right*0.05f);*/
         var transform1 = transform;
         itemInHand.GetTransform().position = (transform1.position + transform1.forward*0.5f - transform1.up*0.8f + transform1.right*0.05f);
-        Irse(isSameInfo);
+        Irse(isSameInfo,1);
     }
 
     public void LetGo()
