@@ -33,7 +33,7 @@ public class BandejaInfo : MonoBehaviour
         complemtentos = i;
     }
 
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("bandeja"))
         {
