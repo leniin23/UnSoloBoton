@@ -13,6 +13,6 @@ public class EngranajeComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0.0f, 0.0f, speed*Time.deltaTime*20f, Space.World);
+        transform.Rotate(0.0f, 0.0f, speed*Time.deltaTime, Space.World);
     }
 }

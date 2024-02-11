@@ -14,12 +14,10 @@ namespace spawn
         private float timer1;
         private GameObject bandeja;
         private bool isMoving;
-        //private AudioSource beltSFX;
 
         void Start()
         {
             initialPos = new Vector3(transform.position.x - 1f, transform.position.y - 0.4f, transform.position.z);
-            //beltSFX = Resources.Load<AudioSource>("Sonidos/conveyor-belt-in-an-airport-59829");
             timer = 0;
             timer1 = 0;
         }
@@ -45,8 +43,6 @@ namespace spawn
          
             if (isMoving && bandeja)
             {
-                /*if(!beltSFX.isPlaying)
-                    beltSFX.Play();*/
                 timer1 += Time.deltaTime;
                 bandeja.transform.Translate(Time.deltaTime * speed * Vector3.left);
                 if (timer1 > timeMoving)
@@ -54,10 +50,7 @@ namespace spawn
                     isMoving = false;
                     timer1 = 0;
                 }
-            }
-            else
-            {
-                //beltSFX.Stop();
+
             }
         }
 

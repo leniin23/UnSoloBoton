@@ -48,7 +48,7 @@ public class MenuOpciones : MonoBehaviour
         if (SceneManager.GetActiveScene().name != "escenaAntonio")
         {
             Cursor.visible = false;
-            //Cursor.lockState = CursorLockMode.Locked;
+            Cursor.lockState = CursorLockMode.Locked;
         }
         Time.timeScale = 1;
         exitButton.SetActive(false);
