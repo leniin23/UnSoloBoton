@@ -184,8 +184,9 @@ public class ClientComponent : MonoBehaviour, IPickable
         itemInHand.GetTransform().position = (transform1.position + transform1.forward*0.5f - transform1.up*0.8f + transform1.right*0.05f);*/
         var transform1 = transform;
         itemInHand.GetTransform().position = (transform1.position + transform1.forward*0.5f - transform1.up*0.8f + transform1.right*0.05f);
+        Destroy(itemInHand as Bandeja);
         comida = itemInHand.GetTransform().gameObject;
-        //Destroy(itemInHand as Object);
+        //itemInHand.GetTransform().GetComponent<Collider>().isTrigger = true;
         Irse(isSameInfo,1);
     }
 

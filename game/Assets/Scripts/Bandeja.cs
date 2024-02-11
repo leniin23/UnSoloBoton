@@ -41,6 +41,8 @@ namespace DefaultNamespace
 
         public void LetGo()
         {
+            Debug.Log("a");
+            if(!this) return;
             //transform.rotation = Quaternion.identity;
             transform.position = transform.parent.position + transform.parent.forward + transform.parent.up*0.35f;
             transform.parent = null;
@@ -50,7 +52,7 @@ namespace DefaultNamespace
         }
         public Transform GetTransform()
         {
-            return transform;
+            return this.transform;
         }
     }
 }
