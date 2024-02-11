@@ -165,6 +165,8 @@ public class ClientComponent : MonoBehaviour, IPickable
 
     public void PickUp(Transform father, IPickable itemInHand)
     {
+        //Angrybool es true cuando NO esta enfadado, por algun motivo
+        if(!angryBool)   return;
         Debug.Log("hOLIS 1");
         if(itemInHand == null)  return;
         var info = itemInHand.GetTransform().GetComponent<BandejaInfo>();
@@ -185,7 +187,7 @@ public class ClientComponent : MonoBehaviour, IPickable
 
     public void LetGo()
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
     public Transform GetTransform()
     {

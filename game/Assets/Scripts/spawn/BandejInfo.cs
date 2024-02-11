@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using spawn;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class BandejaInfo : MonoBehaviour
 {
     private spawnController s;
 
+    private static ParticleSystem smoke;
     private bool pathStep;
     public GameObject final;
     const int speed = 1;
@@ -17,6 +19,7 @@ public class BandejaInfo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (smoke == null) smoke = FindObjectOfType<ParticleSystem>();
         s = GameObject.FindWithTag("spawner").GetComponent<spawnController>();
     }
 
@@ -47,6 +50,9 @@ public class BandejaInfo : MonoBehaviour
         if (other.gameObject.CompareTag("bandeja"))
         {
             s.reset();
+            var pos = (transform.position + other.transform.position) * 0.5f;
+            var smokeCopy = Instantiate(smoke, pos, Quaternion.identity);
+            smokeCopy.Play();
             Destroy(other.gameObject);
             Destroy(gameObject);
         }
@@ -60,7 +66,9 @@ public class BandejaInfo : MonoBehaviour
                 transform.position = final.transform.position;
                 pathStep = true;
             }
-            else { pathStep = false; }
+            else { pathStep = false;
+                transform.gameObject.AddComponent(typeof(Bandeja));
+            }
         }
     }
 }

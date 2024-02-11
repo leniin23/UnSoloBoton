@@ -17,7 +17,7 @@ namespace DefaultNamespace
             transform.SetParent(father);
             transform.localPosition = Vector3.zero;
             transform.rotation = Quaternion.identity;
-            transform.position += father.forward + father.right + father.up*0.35f;
+            transform.position += father.forward - father.right + father.up*0.35f;
             //collider = transform.GetComponent<Collider>();
             //collider.isTrigger = true;
             body.isKinematic = true;
@@ -32,6 +32,10 @@ namespace DefaultNamespace
             {
                 body = gameObject.AddComponent<Rigidbody>();
             }
+
+            body.isKinematic = false;
+            body.useGravity = true;
+            collider.isTrigger = false;
 
         }
 

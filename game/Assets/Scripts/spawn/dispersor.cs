@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class dispersor : MonoBehaviour
 {
+    private static ParticleSystem smoke;
     public GameObject[] objetosACrear;
     private GameObject objeto;
     public float timeMoving;
@@ -15,6 +16,7 @@ public class dispersor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (smoke == null) smoke = FindObjectOfType<ParticleSystem>();
         timer = 0;
         position = new Vector3(transform.position.x, transform.position.y -0.5f, transform.position.z);
     }
@@ -35,6 +37,8 @@ public class dispersor : MonoBehaviour
           
            if (objeto&&!objeto.transform.parent)
            {
+               var smokeCopy = Instantiate(smoke, objeto.transform.position, Quaternion.identity);
+               smokeCopy.Play();
                Destroy(objeto);
            }
         }
