@@ -38,7 +38,7 @@ public class MenuOpciones : MonoBehaviour
         Time.timeScale = 0;
         if (SceneManager.GetActiveScene().name!="escenaAntonio")
         {
-            //exitButton.SetActive(true);
+            exitButton.SetActive(true);
         }
 
     }
@@ -46,7 +46,9 @@ public class MenuOpciones : MonoBehaviour
     public void MoveMenuDown()
     {
         Time.timeScale = 1;
-        //exitButton.SetActive(false);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        exitButton.SetActive(false);
         transform.parent.gameObject.SetActive(false);
     }
 

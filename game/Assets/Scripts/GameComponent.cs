@@ -70,33 +70,21 @@ public class GameComponent : MonoBehaviour
                 UnPause();
             }
         }
-
-        else if (Input.GetKeyDown(KeyCode.C))
-        {
-            if (Cursor.visible)
-            {
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
-            }
-            else
-            {
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.Confined;
-            }
-            camJugador.enabled = !camJugador.enabled;
-            camMinijuego.enabled = !camMinijuego.enabled;
-        }
     }
 
     void Pause(){
         if (canPause) {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
             optionsMenu.SetActive(true);
             optionsMenu.GetComponentInChildren<MenuOpciones>().MoveMenuUp();
         }
     }
     void UnPause(){
         if (canPause) {
-            optionsMenu.SetActive(true);
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            optionsMenu.SetActive(false);
             optionsMenu.GetComponentInChildren<MenuOpciones>().MoveMenuDown();
         }
     }
