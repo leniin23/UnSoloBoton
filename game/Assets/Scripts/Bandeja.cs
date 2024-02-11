@@ -16,8 +16,8 @@ namespace DefaultNamespace
             RayCast.instance.PickUp(this);
             transform.SetParent(father);
             transform.localPosition = Vector3.zero;
-            transform.rotation = Quaternion.identity;
-            transform.position += father.forward - father.right + father.up*0.35f;
+            transform.rotation = Quaternion.Euler(0, 90, 0);
+            transform.position += father.forward*0.75f - father.right*0.7f + father.up*0.35f;
             //collider = transform.GetComponent<Collider>();
             //collider.isTrigger = true;
             body.isKinematic = true;
@@ -41,8 +41,8 @@ namespace DefaultNamespace
 
         public void LetGo()
         {
-            transform.rotation = Quaternion.identity;
-            transform.position = transform.parent.position + transform.parent.forward;
+            //transform.rotation = Quaternion.identity;
+            transform.position = transform.parent.position + transform.parent.forward + transform.parent.up*0.35f;
             transform.parent = null;
             body.isKinematic = false;
             canBeTaken = true;

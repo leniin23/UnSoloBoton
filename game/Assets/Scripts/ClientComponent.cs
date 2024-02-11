@@ -4,6 +4,7 @@ using System;
 using DefaultNamespace;
 using Unity.VisualScripting;
 using UnityEngine;
+using Object = UnityEngine.Object;
 using Random = System.Random;
 
 public class ClientComponent : MonoBehaviour, IPickable
@@ -25,7 +26,7 @@ public class ClientComponent : MonoBehaviour, IPickable
 
     private float tiempoCooldown;
     [SerializeField] private float maxCooldown;
-
+    private GameObject comida;
     public int speed;
     public int estado = 0;
 
@@ -86,6 +87,7 @@ public class ClientComponent : MonoBehaviour, IPickable
             }
             else if (estado == 3) //cooldown
             {
+                if(comida)Destroy(comida);
                 tiempoCooldown -= Time.deltaTime;
                 if (tiempoCooldown <= 0)
                 {
@@ -166,7 +168,7 @@ public class ClientComponent : MonoBehaviour, IPickable
     public void PickUp(Transform father, IPickable itemInHand)
     {
         //Angrybool es true cuando NO esta enfadado, por algun motivo
-        if(!angryBool)   return;
+        if(estado == 1)   return;
         Debug.Log("hOLIS 1");
         if(itemInHand == null)  return;
         var info = itemInHand.GetTransform().GetComponent<BandejaInfo>();
@@ -182,6 +184,8 @@ public class ClientComponent : MonoBehaviour, IPickable
         itemInHand.GetTransform().position = (transform1.position + transform1.forward*0.5f - transform1.up*0.8f + transform1.right*0.05f);*/
         var transform1 = transform;
         itemInHand.GetTransform().position = (transform1.position + transform1.forward*0.5f - transform1.up*0.8f + transform1.right*0.05f);
+        comida = itemInHand.GetTransform().gameObject;
+        Destroy(itemInHand as Object);
         Irse(isSameInfo,1);
     }
 
