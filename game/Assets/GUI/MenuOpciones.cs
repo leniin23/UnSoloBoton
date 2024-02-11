@@ -11,7 +11,8 @@ public class MenuOpciones : MonoBehaviour
     static Slider volumeSlider;
     static Toggle fullscreenToggle;
     static bool fullscreen;
-    static float volumen = 1;
+
+    public static float volumen = 1;
     //const float upPosition = 0;
     //float downPosition = Screen.height*-0.5f;
     void Start()
