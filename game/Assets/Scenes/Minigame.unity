@@ -1826,7 +1826,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &140514460
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3049,7 +3049,7 @@ PrefabInstance:
     - target: {fileID: 5172114327752521115, guid: 1030947b662791d48b35a2b392716f2e,
         type: 3}
       propertyPath: speed
-      value: 1.3
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5556,7 +5556,7 @@ PrefabInstance:
     - target: {fileID: 5172114327752521115, guid: 1030947b662791d48b35a2b392716f2e,
         type: 3}
       propertyPath: speed
-      value: -1.3
+      value: -3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5845,7 +5845,7 @@ PrefabInstance:
     - target: {fileID: 5172114327752521115, guid: 1030947b662791d48b35a2b392716f2e,
         type: 3}
       propertyPath: speed
-      value: -1.4
+      value: -4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6897,7 +6897,7 @@ PrefabInstance:
     - target: {fileID: 2410739502170709115, guid: c45168e1cba63304caae86a675559553,
         type: 3}
       propertyPath: maxTime
-      value: 150
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2993776054936480521, guid: c45168e1cba63304caae86a675559553,
         type: 3}
@@ -7221,7 +7221,7 @@ PrefabInstance:
     - target: {fileID: 5172114327752521115, guid: 1030947b662791d48b35a2b392716f2e,
         type: 3}
       propertyPath: speed
-      value: 1.3
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8899,7 +8899,6 @@ GameObject:
   - component: {fileID: 1231379950}
   - component: {fileID: 1231379953}
   - component: {fileID: 1231379952}
-  - component: {fileID: 1231379951}
   m_Layer: 5
   m_Name: puntuacion (1)
   m_TagString: Untagged
@@ -8927,19 +8926,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -27.15}
   m_SizeDelta: {x: 68.90398, y: 16.08342}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1231379951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1231379949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a32e0a263c14b04d964eed03d71cc3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  texto: {fileID: 0}
 --- !u!114 &1231379952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9490,7 +9476,7 @@ PrefabInstance:
     - target: {fileID: 2410739502170709115, guid: c45168e1cba63304caae86a675559553,
         type: 3}
       propertyPath: maxTime
-      value: 150
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2993776054936480521, guid: c45168e1cba63304caae86a675559553,
         type: 3}
@@ -12764,7 +12750,7 @@ PrefabInstance:
     - target: {fileID: 2410739502170709115, guid: c45168e1cba63304caae86a675559553,
         type: 3}
       propertyPath: maxTime
-      value: 150
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2993776054936480521, guid: c45168e1cba63304caae86a675559553,
         type: 3}
@@ -14266,7 +14252,7 @@ PrefabInstance:
     - target: {fileID: 5172114327752521115, guid: 1030947b662791d48b35a2b392716f2e,
         type: 3}
       propertyPath: speed
-      value: -1.5
+      value: -5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14618,7 +14604,7 @@ PrefabInstance:
     - target: {fileID: 5172114327752521115, guid: 1030947b662791d48b35a2b392716f2e,
         type: 3}
       propertyPath: speed
-      value: 1.3
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15588,7 +15574,7 @@ PrefabInstance:
     - target: {fileID: 5172114327752521115, guid: 1030947b662791d48b35a2b392716f2e,
         type: 3}
       propertyPath: speed
-      value: -1.5
+      value: -5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16382,7 +16368,7 @@ PrefabInstance:
     - target: {fileID: 5172114327752521115, guid: 1030947b662791d48b35a2b392716f2e,
         type: 3}
       propertyPath: speed
-      value: -1.5
+      value: -5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16535,7 +16521,7 @@ PrefabInstance:
     - target: {fileID: 5172114327752521115, guid: 1030947b662791d48b35a2b392716f2e,
         type: 3}
       propertyPath: speed
-      value: 1.5
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16779,7 +16765,7 @@ PrefabInstance:
     - target: {fileID: 5172114327752521115, guid: 1030947b662791d48b35a2b392716f2e,
         type: 3}
       propertyPath: speed
-      value: 1.7
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17482,7 +17468,7 @@ PrefabInstance:
     - target: {fileID: 5172114327752521115, guid: 1030947b662791d48b35a2b392716f2e,
         type: 3}
       propertyPath: speed
-      value: -1.6
+      value: -6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

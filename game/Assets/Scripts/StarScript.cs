@@ -53,6 +53,7 @@ public class StarScript : MonoBehaviour
     {
         if (life <= 0)
         {
+            salir = true;
             GameComponent.canPause = false;
             deadScreen.SetActive(true);
             Time.timeScale = 0f;
