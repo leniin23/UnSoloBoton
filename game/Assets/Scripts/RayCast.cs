@@ -31,7 +31,7 @@ public class RayCast : MonoBehaviour
         
         
         // El rayo se ve en la escena, mientras se ejecuta, pero no se ve en la partida
-        Debug.DrawRay(cam.position, cam.forward*distRayo, Color.red); 
+        //Debug.DrawRay(cam.position, cam.forward*distRayo, Color.red); 
         // cam.fordward: direcci n eje azul
         // cam.position: posicion camara
 
@@ -43,7 +43,7 @@ public class RayCast : MonoBehaviour
         {
             //Actualizamos a que estamos mirando
             lookAt = hit.transform.GetComponent<IPickable>();
-            Debug.Log("Name: " + lookAt?.GetTransform().name);
+            //Debug.Log("Name: " + lookAt?.GetTransform().name);
             // Si se pulsa la tecla e sobre el objeto...
             if (isMousePressed)
             {

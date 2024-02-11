@@ -22,7 +22,7 @@ public class MenuPrincipal : MonoBehaviour
 
     public void Salir()
     {
-        Debug.Log("salir");
+        //Debug.Log("salir");
         Application.Quit();
     }
 

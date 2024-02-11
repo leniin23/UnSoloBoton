@@ -75,7 +75,7 @@ namespace DefaultNamespace
         
         private void CheckIngredient()
         {
-            Debug.Log("Checking...");
+            //Debug.Log("Checking...");
             var ingredient = -1;
             for (int i = 0; i < colorList.Count; i++)
             {

@@ -63,7 +63,7 @@ public class MenuOpciones : MonoBehaviour
     {
         volumen = volumeSlider.value;
         AudioListener.volume = volumen;
-        Debug.Log(volumen);
+        //Debug.Log(volumen);
     }
 
     public void ToggleFullscreen()

@@ -76,7 +76,7 @@ public class Cable : MonoBehaviour
 
     public void Connect(Vector3 position)
     {
-        Debug.Log("Connected");
+        //Debug.Log("Connected");
         IsConnected = true;
         rigidbodyHead.isKinematic = true;
         rigidbodyHead.Move(position, Quaternion.Euler(0,0,90));

@@ -30,7 +30,7 @@ public class Enchufe : MonoBehaviour
         if(cable == null) return;
         if (!cable.isKinematic)
         {
-            Debug.Log("EXIT");
+            //Debug.Log("EXIT");
             manager.TurnOffMainBulb(color);
         }
     }

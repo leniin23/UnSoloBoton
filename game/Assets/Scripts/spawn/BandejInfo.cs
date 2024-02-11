@@ -59,7 +59,7 @@ public class BandejaInfo : MonoBehaviour
 
         if (other.gameObject.CompareTag("bandejaPath"))
         {
-            Debug.LogWarning("fofofoofofof");
+            //Debug.LogWarning("fofofoofofof");
             if (!pathStep)
             {
                 transform.Rotate(0.0f, 270, 0.0f, Space.World);

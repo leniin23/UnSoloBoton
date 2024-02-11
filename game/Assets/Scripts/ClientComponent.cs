@@ -79,7 +79,7 @@ public class ClientComponent : MonoBehaviour, IPickable
                 transform.localPosition.x,
                 transform.localPosition.y - speed * Time.deltaTime,
                 transform.localPosition.z);
-                if (transform.localPosition.y <= -4f) { Debug.Log("joder macho"); tiempoCooldown = maxCooldown; estado = 3; }
+                if (transform.localPosition.y <= -4f) {tiempoCooldown = maxCooldown; estado = 3; }
             }
             else if (estado == 2) //subir
             {
@@ -149,7 +149,6 @@ public class ClientComponent : MonoBehaviour, IPickable
         pedido.transform.GetChild(complemento).gameObject.SetActive(true);
         pedido.transform.GetChild(bebida).gameObject.SetActive(true);
 
-        Debug.LogWarning(hamburguesa + " - " + complemento + " - " + bebida);
         tiempoLimite = maxTime;
     }
 
@@ -178,11 +177,11 @@ public class ClientComponent : MonoBehaviour, IPickable
     {
         //Angrybool es true cuando NO esta enfadado, por algun motivo
         if(estado == 1)   return;
-        Debug.Log("hOLIS 1");
+        //Debug.Log("hOLIS 1");
         if(itemInHand == null)  return;
         var info = itemInHand.GetTransform().GetComponent<BandejaInfo>();
         if(info == null) return;
-        Debug.Log("hOLIS 2");
+        //Debug.Log("hOLIS 2");
         var isSameInfo = info.hamburguesa == hamburguesa && info.complemtentos == complemento && info.bebida == bebida;
         
         RayCast.instance.LetGo();
