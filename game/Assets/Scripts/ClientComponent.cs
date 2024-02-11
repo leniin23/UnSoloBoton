@@ -185,7 +185,7 @@ public class ClientComponent : MonoBehaviour, IPickable
         var transform1 = transform;
         itemInHand.GetTransform().position = (transform1.position + transform1.forward*0.5f - transform1.up*0.8f + transform1.right*0.05f);
         comida = itemInHand.GetTransform().gameObject;
-        Destroy(itemInHand as Object);
+        //Destroy(itemInHand as Object);
         Irse(isSameInfo,1);
     }
 

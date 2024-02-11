@@ -81,6 +81,10 @@ public class RayCast : MonoBehaviour
 
     public void LetGo()
     {
+        if (grabedBody == null)
+        {
+            return;
+        }
         grabedBody?.LetGo();
         grabedBody = null;
         //objAgarrado = null;

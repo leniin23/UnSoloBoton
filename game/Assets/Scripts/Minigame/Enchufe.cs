@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DefaultNamespace;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Android;
 
 public class Enchufe : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class Enchufe : MonoBehaviour
     {
         manager = transform.parent.parent.GetComponent<MachineManager>();
         GetComponent<MeshRenderer>().material.color = color;
+        GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", color);
     }
 
     private void OnTriggerEnter(Collider other)
