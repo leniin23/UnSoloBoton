@@ -19,6 +19,8 @@ public class ClientComponent : MonoBehaviour, IPickable
     private GameObject pedido;
     private GameObject rectanguloTimer;
 
+    public static int ganancias;
+
     private float tiempoLimite;
     public float maxTime;
     public float timePercent;
@@ -35,9 +37,11 @@ public class ClientComponent : MonoBehaviour, IPickable
     // c.Patatas 0, c.Deluxe 1, c.Nuggets 2
     // b.Colacoca 0, b.Nafta 1, c.Sprint 2
 
+
     // Start is called before the first frame update
     void Start()
     {
+        ganancias = 0;
         client = transform.Find("1_c").gameObject.GetComponent<SpriteRenderer>();
         targetCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         pedido = transform.GetChild(0).gameObject;
@@ -155,14 +159,19 @@ public class ClientComponent : MonoBehaviour, IPickable
         rectanguloTimer.gameObject.SetActive(false);
         if (a)
         {
+            //dinero
+            ganancias += 10 + (int)(10 * timePercent);
             //Oh baby all bien all correcto
         }
         else
         {
             //llamar a observers y quitar estrellas
+            //quitar dinero
+            ganancias -= 10;
             StarScript.instance.OnNext(stars);
         }
         estado = 1;
+        StarScript.instance.Dead();
     }
 
     public void PickUp(Transform father, IPickable itemInHand)

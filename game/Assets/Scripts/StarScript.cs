@@ -10,8 +10,11 @@ public class StarScript : MonoBehaviour
     private int life = 10;
     [SerializeField] private float halfStarSize;
     [SerializeField] private Transform starColors;
+
+    public GameObject deadScreen;
     void Start()
     {
+        deadScreen = GameObject.Find("ANUNCIO");
         halfStarSize = starColors.localScale.x*1.019f;
         if (instance == null) instance = this;
         else Destroy(this);
@@ -41,5 +44,17 @@ public class StarScript : MonoBehaviour
             starColors.localScale = size;
             //starColors.bounds.size = size;
         }*/
+    }
+
+    public void Dead()
+    {
+        if (life == 0)
+        {
+            deadScreen.SetActive(true);
+            Time.timeScale = 0f;
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+            //mostrar mensaje en canvas
+        }
     }
 }

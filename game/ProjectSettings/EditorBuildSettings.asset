@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/escenaAntonio.unity
     guid: 659c8c8b6c375e341919ec30d3563ec0
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Diego.unity
     guid: 302b2cf06afe5854cae73191688c5bfb
   - enabled: 1
