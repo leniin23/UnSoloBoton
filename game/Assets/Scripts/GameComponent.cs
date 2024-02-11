@@ -14,7 +14,7 @@ public class GameComponent : MonoBehaviour
     [SerializeField] private Camera camMinijuego;
     [SerializeField] GameObject optionsMenu;
     [SerializeField] GameObject dialogBox;
-    bool canPause;
+    public static bool canPause;
 
     void Start()
     {

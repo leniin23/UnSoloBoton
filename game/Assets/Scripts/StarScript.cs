@@ -14,7 +14,6 @@ public class StarScript : MonoBehaviour
     public GameObject deadScreen;
     void Start()
     {
-        deadScreen = GameObject.Find("ANUNCIO");
         halfStarSize = starColors.localScale.x*1.019f;
         if (instance == null) instance = this;
         else Destroy(this);
@@ -48,8 +47,9 @@ public class StarScript : MonoBehaviour
 
     public void Dead()
     {
-        if (life == 0)
+        if (life <= 0)
         {
+            GameComponent.canPause = false;
             deadScreen.SetActive(true);
             Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.Confined;

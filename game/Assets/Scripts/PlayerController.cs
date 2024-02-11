@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
 
         if (transform.position.y < -10)
         {
-            var pos = new Vector3(0, 4.5f, 0);
+            var pos = new Vector3(-1812f, 1f, -910);
             transform.position = pos;
             controller.transform.position = pos;
             playerCamera.transform.position = pos;
