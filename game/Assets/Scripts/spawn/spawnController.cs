@@ -40,7 +40,7 @@ namespace spawn
 
             }
 
-
+         
             if (isMoving && bandeja)
             {
                 timer1 += Time.deltaTime;
@@ -67,6 +67,12 @@ namespace spawn
         public float getTime()
         {
             return timeMoving;
+        }
+
+        public void reset()
+        {
+            isMoving = false;
+            timer1 = 0;
         }
 
     }

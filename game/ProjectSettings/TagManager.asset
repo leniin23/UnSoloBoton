@@ -9,6 +9,7 @@ TagManager:
   - Hamburguesa
   - bandeja
   - IniciarMinijuego
+  - spawner
   layers:
   - Default
   - TransparentFX

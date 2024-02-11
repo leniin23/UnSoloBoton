@@ -26,7 +26,7 @@ public class Hamburguesa : MonoBehaviour
         if (bandejaMove)
         {
             timer += Time.deltaTime;
-            if (timer < spawn.getTime())
+            if (timer < 2)
             {
                 bandeja.transform.Translate(spawn.getSpeed() * Time.deltaTime * Vector3.left);
                 

@@ -22,7 +22,7 @@ public class Complementos : MonoBehaviour
         if (bandejaMove)
         {
             timer += Time.deltaTime;
-            if (timer < spawn.getTime())
+            if (timer < 1.7)
             {
                 bandeja.transform.Translate(spawn.getSpeed() * Time.deltaTime * Vector3.left);
             }

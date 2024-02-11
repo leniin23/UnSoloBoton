@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using spawn;
 using UnityEngine;
 
 public class BandejaInfo : MonoBehaviour
 {
+    private spawnController s;
     public int hamburguesa { get; private set; } = 0;
     public int bebida{ get; private set; }= 0;
     public int complemtentos{ get; private set; }= 0;
@@ -11,7 +13,7 @@ public class BandejaInfo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        s = GameObject.FindWithTag("spawner").GetComponent<spawnController>();
     }
 
     // Update is called once per frame
@@ -37,6 +39,7 @@ public class BandejaInfo : MonoBehaviour
     {
         if (other.gameObject.CompareTag("bandeja"))
         {
+            s.reset();
             Destroy(other.gameObject);
             Destroy(gameObject);
         }
