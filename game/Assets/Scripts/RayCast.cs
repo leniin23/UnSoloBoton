@@ -43,6 +43,7 @@ public class RayCast : MonoBehaviour
         {
             //Actualizamos a que estamos mirando
             lookAt = hit.transform.GetComponent<IPickable>();
+            Debug.Log("Name: " + lookAt?.GetTransform().name);
             // Si se pulsa la tecla e sobre el objeto...
             if (isMousePressed)
             {
@@ -81,10 +82,6 @@ public class RayCast : MonoBehaviour
 
     public void LetGo()
     {
-        if (grabedBody == null)
-        {
-            return;
-        }
         grabedBody?.LetGo();
         grabedBody = null;
         //objAgarrado = null;
