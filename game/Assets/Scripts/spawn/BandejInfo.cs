@@ -6,6 +6,10 @@ using UnityEngine;
 public class BandejaInfo : MonoBehaviour
 {
     private spawnController s;
+
+    private bool pathStep;
+    public GameObject final;
+    const int speed = 1;
     public int hamburguesa { get; private set; } = 0;
     public int bebida{ get; private set; }= 0;
     public int complemtentos{ get; private set; }= 0;
@@ -19,7 +23,10 @@ public class BandejaInfo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (pathStep)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - speed * Time.deltaTime);
+        }
     }
 
     public void setHamburguesa(int i = 0)
@@ -42,6 +49,18 @@ public class BandejaInfo : MonoBehaviour
             s.reset();
             Destroy(other.gameObject);
             Destroy(gameObject);
+        }
+
+        if (other.gameObject.CompareTag("bandejaPath"))
+        {
+            Debug.LogWarning("fofofoofofof");
+            if (!pathStep)
+            {
+                transform.Rotate(0.0f, 270, 0.0f, Space.World);
+                transform.position = final.transform.position;
+                pathStep = true;
+            }
+            else { pathStep = false; }
         }
     }
 }

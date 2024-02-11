@@ -10,6 +10,7 @@ TagManager:
   - bandeja
   - IniciarMinijuego
   - spawner
+  - bandejaPath
   layers:
   - Default
   - TransparentFX
