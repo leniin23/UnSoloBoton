@@ -50,8 +50,8 @@ namespace DefaultNamespace
             MinigameManager.instance.StartGame(this);
             //Change camera
             //Camera.SetupCurrent(_gameCamera);
-            //Cursor.visible = true;
-            //Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
             _playerCamera.enabled = !_playerCamera.enabled;
             _gameCamera.enabled = !_gameCamera.enabled;
             SpriteType();

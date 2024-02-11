@@ -74,8 +74,11 @@ public class GameComponent : MonoBehaviour
 
     void Pause(){
         if (canPause) {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.Confined;
+            if (camJugador.enabled)
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.Confined;
+            }
             optionsMenu.SetActive(true);
             optionsMenu.GetComponentInChildren<MenuOpciones>().MoveMenuUp();
         }
