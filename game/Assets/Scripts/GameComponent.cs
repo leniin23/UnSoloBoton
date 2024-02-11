@@ -22,25 +22,25 @@ public class GameComponent : MonoBehaviour
         optionsMenu.SetActive(false);
         camJugador.enabled = true;
         camMinijuego.enabled = false;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = true;//false
+        Cursor.lockState = CursorLockMode.None;//Locked;
         v.LoadDialogue(new Dialog(new string[]
         {
-            "Pufff, ya son las 23:30 qué ganas de echarme unas partiditas al solitario.",
+            "Hola, chaval",
             "...",
             "NI",
-            "¡Oh no! ¡Se me ha vuelto a olvidar este año corregir los trabajos! Y las actas cierran esta noche. ¡Tengo que darme prisa!",
-            "Vale... ¿Cómo se hacía esto de corregir?",
-            "Vale, si no recuerdo mal, las presentaciones de mis alumnos irán apareciendo en la pantalla de mi precioso ordenador.",
-            "Y con mi súper-teclado custom de última generación puedo pasar entre las diapositivas",
-            "No necesito más teclas, porque en cuanto corrija una presentación, se pasará directamente a la siguiente",
-            "Ahora solo tengo que encontrar la guía...",
+            "ï¿½Oh no! Â¡Se me ha vuelto a olvidar este aï¿½o corregir los trabajos! Y las actas cierran esta noche. ï¿½Tengo que darme prisa!",
+            "Vale... Â¡CÃ³mo se hacï¿½a esto de corregir?",
+            "Vale, si no recuerdo mal, las presentaciones de mis alumnos irï¿½n apareciendo en la pantalla de mi precioso ordenador.",
+            "Y con mi sÃºper-teclado custom de ï¿½ltima generaciï¿½n puedo pasar entre las diapositivas",
+            "No necesito mï¿½s teclas, porque en cuanto corrija una presentaciï¿½n, se pasarï¿½ directamente a la siguiente",
+            "Ahora solo tengo que encontrar la guï¿½a...",
             "...",
-            "Estas guías deberían tener los criterios de corrección de la primera parte del curso.",
-            "Lleva tanto tiempo en el cajón que es difícil separar las hojas. De no ser porque tiene una esquina levantada no podría pasar las hojas, aunque eso significa que solo puedo pasar las hojas hacia delante.",
-            "Según avancen los trabajos, tendré que atenerme a más reglas, pero ya iré sacando esas guías cuando las necesite.",
-            "Y para finalizar, el botón para corregir estaba…",
-            "Ah sí, aquí arriba. SI FALTA AUNQUE SEA UNO DE LOS REQUISITOS LA PRÁCTICA ESTARÁ SUPER-SUSPENSA,\n... y si está perfecta, aprobada",
+            "Estas guï¿½as deberï¿½an tener los criterios de correcciï¿½n de la primera parte del curso.",
+            "Lleva tanto tiempo en el cajï¿½n que es difï¿½cil separar las hojas. De no ser porque tiene una esquina levantada no podrï¿½a pasar las hojas, aunque eso significa que solo puedo pasar las hojas hacia delante.",
+            "Segï¿½n avancen los trabajos, tendrï¿½ que atenerme a mï¿½s reglas, pero ya irï¿½ sacando esas guï¿½as cuando las necesite.",
+            "Y para finalizar, el botï¿½n para corregir estabaï¿½",
+            "Ah sï¿½, aquï¿½ arriba. SI FALTA AUNQUE SEA UNO DE LOS REQUISITOS LA PRï¿½CTICA ESTARï¿½ SUPER-SUSPENSA,\n... y si estï¿½ perfecta, aprobada",
             ""
         }, new bool[] {false}, new Image[]
         {
@@ -54,6 +54,8 @@ public class GameComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             v.NextTip();
@@ -83,12 +85,15 @@ public class GameComponent : MonoBehaviour
             optionsMenu.GetComponentInChildren<MenuOpciones>().MoveMenuUp();
         }
     }
-    void UnPause(){
+    void UnPause()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         if (canPause) {
             if (camJugador.enabled)
             {
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
+                //Cursor.visible = false;
+                //Cursor.lockState = CursorLockMode.Locked;
             }
             optionsMenu.SetActive(false);
             optionsMenu.GetComponentInChildren<MenuOpciones>().MoveMenuDown();

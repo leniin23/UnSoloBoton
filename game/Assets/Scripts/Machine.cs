@@ -67,7 +67,7 @@ namespace DefaultNamespace
         }
         public void LetGo()
         {
-            Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             _playerCamera.enabled = !_playerCamera.enabled;
             _gameCamera.enabled = !_gameCamera.enabled;
