@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StarScript : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class StarScript : MonoBehaviour
     private int life = 10;
     [SerializeField] private float halfStarSize;
     [SerializeField] private Transform starColors;
-
+    private bool salir;
     public GameObject deadScreen;
     void Start()
     {
@@ -22,7 +23,10 @@ public class StarScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(salir&& Input.GetKeyDown(KeyCode.Space))
+        {
+            SceneManager.LoadScene("escenaAntonio", LoadSceneMode.Single);
+        }
     }
     
     public void OnNext(int value)
