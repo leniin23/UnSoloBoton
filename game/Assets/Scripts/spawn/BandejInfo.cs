@@ -53,6 +53,7 @@ public class BandejaInfo : MonoBehaviour
             var pos = (transform.position + other.transform.position) * 0.5f;
             var smokeCopy = Instantiate(smoke, pos, Quaternion.identity);
             smokeCopy.Play();
+            SFXManager.instance.audioSource.PlayOneShot(Resources.Load<AudioClip>("SFX/fireball"));
             Destroy(other.gameObject);
             Destroy(gameObject);
         }

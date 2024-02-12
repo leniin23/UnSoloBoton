@@ -39,6 +39,8 @@ public class dispersor : MonoBehaviour
            {
                var smokeCopy = Instantiate(smoke, objeto.transform.position, Quaternion.identity);
                smokeCopy.Play();
+               
+               SFXManager.instance.audioSource.PlayOneShot(Resources.Load<AudioClip>("SFX/fireball"));
                Destroy(objeto);
            }
         }
@@ -47,6 +49,8 @@ public class dispersor : MonoBehaviour
     public void setMoveTrue(int ingredient)
     {
         move = true;
+        
+        SFXManager.instance.audioSource.PlayOneShot(Resources.Load<AudioClip>("SFX/box-crash"));
         objeto = Instantiate(objetosACrear[ingredient], position , transform.rotation);
     }
     
