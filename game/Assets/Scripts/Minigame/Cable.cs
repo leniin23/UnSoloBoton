@@ -91,6 +91,8 @@ public class Cable : MonoBehaviour
 
     public void Grab()
     {
+        
+        SFXManager.instance.audioSource.PlayOneShot(Resources.Load<AudioClip>("SFX/cable_conexion"));
         rigidbodyHead.constraints &= ~RigidbodyConstraints.FreezePosition;
         rigidbodyHead.freezeRotation = true;
         rigidbodyHead.useGravity = false;
