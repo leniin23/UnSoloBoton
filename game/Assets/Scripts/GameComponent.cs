@@ -26,21 +26,21 @@ public class GameComponent : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         v.LoadDialogue(new Dialog(new string[]
         {
-            "Pufff, ya son las 23:30 qué ganas de echarme unas partiditas al solitario.",
+            "Buenas, chaval.",
+            "Como es tu primer día de trabajo te voy a explicar cómo van las cosas por aquí.",
+            "Tu trabajo es preparar los menús que te pidan los clientes. Hamburguesa, complemento y bebida. ¿Sencillito, no?",
+            "Aunque debería avisarte, debido a algún problemita técnico, solo tenemos un único botón para las tres máquinas.",
+            "¿Ves esos paneles delante de la cinta? Solo tienes que acercarte a ellos y conectar el botón. Una vez lo hagas, la comida caerá sola. ¡Parece magia, pero solo son productos recalentados!",
+            "Cada vez que vayas a conectarlo tendrás que fijarte en los colores del elemento del menú que quieras y enchufar los cables correspondientes.",
+            "Y si te preoucupa que puedas electrocutarte, ¡No te preocupes! El último empleado lo sobrevivió...",
+            "Con lo que sí que deberías tener cuidado es con la cinta, ¡si la comida no cae en la bandeja, la destruirá inmediatamente! Y si dos bandejas se chocan en la cinta, les ocurrirá lo mismo",
+            "... Ah, sí, también debería decirte que no metas ahí la mano. Es un jaleo de limpiar...",
             "...",
-            "NI",
-            "¡Oh no! ¡Se me ha vuelto a olvidar este año corregir los trabajos! Y las actas cierran esta noche. ¡Tengo que darme prisa!",
-            "Vale... ¿Cómo se hacía esto de corregir?",
-            "Vale, si no recuerdo mal, las presentaciones de mis alumnos irán apareciendo en la pantalla de mi precioso ordenador.",
-            "Y con mi súper-teclado custom de última generación puedo pasar entre las diapositivas",
-            "No necesito más teclas, porque en cuanto corrija una presentación, se pasará directamente a la siguiente",
-            "Ahora solo tengo que encontrar la guía...",
-            "...",
-            "Estas guías deberían tener los criterios de corrección de la primera parte del curso.",
-            "Lleva tanto tiempo en el cajón que es difícil separar las hojas. De no ser porque tiene una esquina levantada no podría pasar las hojas, aunque eso significa que solo puedo pasar las hojas hacia delante.",
-            "Según avancen los trabajos, tendré que atenerme a más reglas, pero ya iré sacando esas guías cuando las necesite.",
-            "Y para finalizar, el botón para corregir estaba…",
-            "Ah sí, aquí arriba. SI FALTA AUNQUE SEA UNO DE LOS REQUISITOS LA PRÁCTICA ESTARÁ SUPER-SUSPENSA,\n... y si está perfecta, aprobada",
+            "Bueno, siguiendo la formación; Lo importante del trabajo es ofrecer un buen servicio y satisfacer a la clientela...",
+            "... para que vuelvan y los ingresos suban.",
+            "Estaré vigilando las reviews online del restaurante, y más te vale que tú también lo hagas... Porque como lleguen a cero...",
+            "...ESTÁS ACABADO!",
+            "Te daré un consejo, a la gente no les gusta que les des un pedido equivocado. Pero lo que les gusta incluso menos, es que les hagas esperar. Hablando de eso, parece que ya tienes clientes.",
             ""
         }, new bool[] {false}, new Image[]
         {
