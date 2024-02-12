@@ -76,6 +76,8 @@ public class Cable : MonoBehaviour
 
     public void Connect(Vector3 position)
     {
+        
+        SFXManager.instance.audioSource.PlayOneShot(Resources.Load<AudioClip>("SFX/cable_conexion"));
         //Debug.Log("Connected");
         IsConnected = true;
         rigidbodyHead.isKinematic = true;
@@ -92,7 +94,6 @@ public class Cable : MonoBehaviour
     public void Grab()
     {
         
-        SFXManager.instance.audioSource.PlayOneShot(Resources.Load<AudioClip>("SFX/cable_conexion"));
         rigidbodyHead.constraints &= ~RigidbodyConstraints.FreezePosition;
         rigidbodyHead.freezeRotation = true;
         rigidbodyHead.useGravity = false;
