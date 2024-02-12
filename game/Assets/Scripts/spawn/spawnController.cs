@@ -56,6 +56,7 @@ namespace spawn
 
         GameObject spawn()
         {
+            SFXManager.instance.audioSource.PlayOneShot(Resources.Load<AudioClip>("SFX/conveyo1"));
             return Instantiate(objectToSpawn, initialPos, transform.rotation);
         }
 
