@@ -10,8 +10,15 @@ public class TestTelefono : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
     }
 
+    //--------------------------------------POSSIBLE UPGRADE-------------------------------//
+    // private IEnumerable<WaitForSeconds> ChangeDirection()
+    // {
+    //     yield return new WaitForSeconds(0.1f);
+    //     rotCore = -rotCore;
+    // }
     // Update is called once per frame
     void Update()
     {

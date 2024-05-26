@@ -10,13 +10,15 @@ public class dispersor : MonoBehaviour
     private bool move;
     private float timer;
     private Vector3 position;
+    
 
     public float speed;
     // Start is called before the first frame update
     void Start()
     {
         timer = 0;
-        position = new Vector3(transform.position.x, transform.position.y -0.5f, transform.position.z);
+        var position1 = transform.position;
+        position = new Vector3(position1.x, position1.y -0.5f, position1.z);
     }
 
     // Update is called once per frame
@@ -35,7 +37,11 @@ public class dispersor : MonoBehaviour
         }
     }
 
+<<<<<<< Updated upstream
     public void setMoveTrue()
+=======
+    public void SetMoveTrue(int ingredient)
+>>>>>>> Stashed changes
     {
         move = true;
         objeto = Instantiate(objetoACrear, position , transform.rotation);

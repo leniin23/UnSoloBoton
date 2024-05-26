@@ -27,7 +27,13 @@ public class ClientComponent : MonoBehaviour
     public int speed; 
     public int estado = 0;
 
+<<<<<<< Updated upstream
     private int hamburguesa, complemento, bebida; 
+=======
+    private int hamburguesa, complemento, bebida;
+
+    private Transform selfTransform;
+>>>>>>> Stashed changes
     // h.Ternera 0, h.Pollo 1, h.Vegana 2
     // c.Patatas 0, c.Deluxe 1, c.Nuggets 2
     // b.Colacoca 0, b.Nafta 1, c.Sprint 2
@@ -35,6 +41,12 @@ public class ClientComponent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+<<<<<<< Updated upstream
+=======
+        selfTransform = transform;
+        
+        ganancias = 0;
+>>>>>>> Stashed changes
         client = transform.Find("1_c").gameObject.GetComponent<SpriteRenderer>();
         targetCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         pedido = transform.GetChild(0).gameObject;
@@ -43,19 +55,28 @@ public class ClientComponent : MonoBehaviour
         //Debug.LogWarning(varId);
         CambiarSprite(varId);
         NuevoPedido();
+        StartCoroutine(Movement());
     }
 
     // Update is called once per frame
     void Update()
     {
+<<<<<<< Updated upstream
         if(Input.GetKeyDown(KeyCode.P)){
             NuevoPedido();
         }
+=======
+        // if (Input.GetKeyDown(KeyCode.P))
+        // {
+        //     NuevoPedido();
+        // }
+>>>>>>> Stashed changes
         transform.LookAt(transform.position + targetCamera.transform.rotation * Vector3.left);
         transform.Rotate(vec, Space.World);
 
         
         timePercent = tiempoLimite / maxTime;
+<<<<<<< Updated upstream
         rectanguloTimer.transform.localScale = new Vector3(
             timePercent*2,
             rectanguloTimer.transform.localScale.y,
@@ -106,8 +127,91 @@ public class ClientComponent : MonoBehaviour
                 Enfadarse();
             }
         }
+=======
+        var localScale = rectanguloTimer.transform.localScale;
+        localScale = new Vector3(
+            timePercent * 2,
+            localScale.y,
+            localScale.z);
+        rectanguloTimer.transform.localScale = localScale;
+>>>>>>> Stashed changes
     }
 
+    private IEnumerator Movement()
+    {
+        for (;;)
+        {
+            switch (estado)
+            {
+                case 0:
+                    tiempoLimite -= Time.deltaTime;
+                    if (tiempoLimite <= 0)
+                    {
+                        Irse(false, 2);
+                        rectanguloTimer.gameObject.SetActive(false);
+                    }
+
+                    if (!angryBool && tiempoLimite < (maxTime * 0.45))
+                    {
+                        Enfadarse();
+                    }
+
+                    break;
+                //bajar
+                case 1:
+                {
+                    var localPosition = selfTransform.localPosition;
+                    localPosition = new Vector3(
+                        transform.localPosition.x,
+                        localPosition.y - speed * Time.deltaTime,
+                        localPosition.z);
+                    selfTransform.localPosition = localPosition;
+                    if (transform.localPosition.y <= -4f)
+                    {
+                        tiempoCooldown = maxCooldown;
+                        estado = 3;
+                    }
+
+                    break;
+                }
+                //subir
+                case 2:
+                {
+                    var localPosition = selfTransform.localPosition;
+                    localPosition = new Vector3(
+                        localPosition.x,
+                        localPosition.y + speed * Time.deltaTime,
+                        localPosition.z);
+                    selfTransform.localPosition = localPosition;
+                    if (transform.localPosition.y >= 0)
+                    {
+                        estado = 0;
+                    }
+
+                    break;
+                }
+                //cooldown
+                case 3:
+                {
+                    if (comida) Destroy(comida);
+                    tiempoCooldown -= Time.deltaTime;
+                    if (tiempoCooldown <= 0)
+                    {
+                        varId = _random.Next(6);
+                        CambiarSprite(varId);
+                        NuevoPedido();
+                        estado = 2;
+                    }
+
+                    break;
+                }
+            }
+
+            yield return new WaitForSeconds(.1f);
+        }
+    }
+    
+    
     private void Enfadarse()
     {
         CambiarSprite(varId + 6);
@@ -123,10 +227,12 @@ public class ClientComponent : MonoBehaviour
     {
         pedido.gameObject.SetActive(true);
         rectanguloTimer.gameObject.SetActive(true);
-        rectanguloTimer.transform.localScale = new Vector3(
+        var localScale = rectanguloTimer.transform.localScale;
+        localScale = new Vector3(
             2f,
-            rectanguloTimer.transform.localScale.y,
-            rectanguloTimer.transform.localScale.z);
+            localScale.y,
+            localScale.z);
+        rectanguloTimer.transform.localScale = localScale;
 
         foreach (Transform child in pedido.transform)
         {

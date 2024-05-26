@@ -1,4 +1,5 @@
-﻿using DefaultNamespace;
+﻿using System.Collections;
+using DefaultNamespace;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -15,11 +16,31 @@ public class RayCast : MonoBehaviour
     {
         if (instance == null) instance = this;
         else Destroy(this);
+        // StartCoroutine(FakeUpdate());
     }
 
+    // private IEnumerator FakeUpdate()
+    // {
+    //     // for (;;)
+    //     // {
+    //     //     Interact();
+    //     //     yield return new WaitForSeconds(0.01F);
+    //     // }
+    // }
+    
     // Update is called once per frame
     void Update()
     {
+<<<<<<< Updated upstream
+=======
+        Interact();
+    }
+
+    private void Interact()
+    {
+        if(Pausa)   return;
+        var isLookingAtSomething = false;
+>>>>>>> Stashed changes
         //Si el objeto esta agarrado y se pulsa la E, se suelta el objeto y no se lanzan rayos
         /*if (firstHit && Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -39,17 +60,34 @@ public class RayCast : MonoBehaviour
         // Si el rayo colisiona con un objeto...
         if (Physics.Raycast(cam.position + cam.forward*0.2f, cam.forward, out hit, distRayo))
         {
+<<<<<<< Updated upstream
             //Actualizamos a que estamos mirando
             lookAt = hit.transform.GetComponent<IPickable>();
 
+=======
+            //Actualizamos a que estamos mirando (obtenemos el IPickable SOLO si la tag coincide)
+            if(hit.transform.CompareTag("Interactable"))
+            {
+                // lookAt = hit.transform.GetComponent<IPickable>();
+                isLookingAtSomething = true;
+            }
+            //Debug.Log("Name: " + lookAt?.GetTransform().name);
+>>>>>>> Stashed changes
             // Si se pulsa la tecla e sobre el objeto...
             if (isMousePressed)
             {
                 //Si no estamos mirando a nada interesante no tenemos que hacer nada
-                if(lookAt == null)
+                if(!isLookingAtSomething)
                 {
+<<<<<<< Updated upstream
+=======
+                    // No se si es necesario
+                    LetGo(); 
+>>>>>>> Stashed changes
                     return;
                 }
+
+                lookAt = hit.transform.GetComponent<IPickable>();
                 //Interactuamos con el objeto
                 lookAt.PickUp(transform, grabedBody);
                 //objAgarrado = hit.transform;       // Me quedo la referencia al objeto agarrado
@@ -61,10 +99,19 @@ public class RayCast : MonoBehaviour
             lookAt = null;
         }
         
-        manoInteract.SetActive(lookAt != null);
-        
-    }
+        manoInteract.SetActive(isLookingAtSomething);
 
+<<<<<<< Updated upstream
+=======
+    }
+    
+    public void SetPausa(bool newPause)
+    {
+        Pausa = newPause;
+        lookAt = null;
+        manoInteract.SetActive(false);
+    }
+>>>>>>> Stashed changes
     public void PickUp(IPickable item)
     {
         grabedBody = item;

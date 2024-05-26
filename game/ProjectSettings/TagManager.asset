@@ -3,12 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Undefined
-  - Lightbulb
-  - Hamburguesa
-  - bandeja
-  - IniciarMinijuego
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -45,7 +40,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: extra
-    uniqueID: 1336073021
     locked: 0

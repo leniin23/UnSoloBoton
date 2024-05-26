@@ -17,7 +17,16 @@ public class BandejaInfo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+<<<<<<< Updated upstream
         
+=======
+        if (pathStep)
+        {
+            var position = transform.position;
+            position = new Vector3(position.x, position.y, position.z - speed * Time.deltaTime);
+            transform.position = position;
+        }
+>>>>>>> Stashed changes
     }
 
     public void setHamburguesa()

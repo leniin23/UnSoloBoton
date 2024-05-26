@@ -98,8 +98,8 @@ namespace DefaultNamespace
         
         private void CalculateRandomColors()
         {
-            List<int> numbers = new List<int>();
-            for (int i = 0; i < possibleColors.Count; i++)
+            var numbers = new List<int>();
+            for (var i = 0; i < possibleColors.Count; i++)
             {
                 numbers.Add(i);
             }
@@ -139,7 +139,7 @@ namespace DefaultNamespace
                         lightbulb = ingredientLights[i].GetChild(j+1);
                         if(!lightbulb.CompareTag("Lightbulb"))
                         {
-                            Debug.Log(lightbulb.name);
+                            // Debug.Log(lightbulb.name);
                             continue;
                         }
                     }

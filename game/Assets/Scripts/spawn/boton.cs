@@ -15,7 +15,11 @@ namespace DefaultNamespace.spawn
         void OnMouseDown()
         {
             Debug.Log("click");
+<<<<<<< Updated upstream
             dispersor.GetComponent<dispersor>().setMoveTrue();
+=======
+            dispersor.GetComponent<dispersor>().SetMoveTrue(0);
+>>>>>>> Stashed changes
         }
     }
 }

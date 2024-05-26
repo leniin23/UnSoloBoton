@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Minigame;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -21,21 +22,20 @@ public class RaycastCables : MonoBehaviour
             Destroy(this);
         }
     }
-    GameObject GetGameObjectAtPosition()
+
+    private static GameObject GetGameObjectAtPosition()
     {
         RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit))
-        {
-            //Debug.Log("found " + hit.collider.gameObject + " at distance: " + hit.distance);
-            return hit.collider.gameObject;
-        }
-        else
-            return null;
+        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        return Physics.Raycast(ray, out hit) ?
+            hit.collider.gameObject : null;
     }
+    
     // Update is called once per frame
     void Update()
     {
+        if(!MinigameManager.instance.isActive)   return;
+        
         if (Input.GetMouseButtonDown(0))
         {
             var obj = GetGameObjectAtPosition();
