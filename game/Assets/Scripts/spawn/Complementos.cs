@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using spawn;
 using UnityEngine;
 
-public class Complementos : MonoBehaviour
+public class Complementos : MonoBehaviour, IFood
 {
     private bool bandejaMove;
     private float timer;
@@ -39,8 +39,10 @@ public class Complementos : MonoBehaviour
         {
             bandeja = other.gameObject;
             gameObject.transform.parent = other.gameObject.transform;
-            other.gameObject.GetComponent<BandejaInfo>().setComplementos();
+            other.gameObject.GetComponent<BandejaInfo>().setComplementos(Number);
             bandejaMove = true;
         }
     }
+
+    public int Number { get; set; }
 }

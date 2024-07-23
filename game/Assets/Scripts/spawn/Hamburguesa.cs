@@ -5,13 +5,13 @@ using System.Runtime.CompilerServices;
 using spawn;
 using UnityEngine;
 
-public class Hamburguesa : MonoBehaviour
+public class Hamburguesa : MonoBehaviour, IFood
 {
     private bool bandejaMove;
     private float timer;
     private GameObject bandeja;
     private spawnController spawn;
-   
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -47,9 +47,10 @@ public class Hamburguesa : MonoBehaviour
         {
             bandeja = other.gameObject;
             gameObject.transform.parent = other.gameObject.transform;
-            other.gameObject.GetComponent<BandejaInfo>().setHamburguesa();
+            other.gameObject.GetComponent<BandejaInfo>().setHamburguesa(Number);
             bandejaMove = true;
         }
     }
 
+    public int Number { get; set; }
 }

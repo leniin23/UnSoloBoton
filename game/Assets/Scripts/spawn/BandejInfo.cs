@@ -32,17 +32,17 @@ public class BandejaInfo : MonoBehaviour
         }
     }
 
-    public void setHamburguesa(int i = 0)
+    public void setHamburguesa(int i)
     {
         hamburguesa = i;
     }
-    public void setBebida(int i = 0)
+    public void setBebida(int i)
     {
-        bebida = i;
+        bebida = i + 6;
     }
-    public void setComplementos(int i = 0)
+    public void setComplementos(int i)
     {
-        complemtentos = i;
+        complemtentos = i + 3;
     }
 
     void OnTriggerEnter(Collider other)

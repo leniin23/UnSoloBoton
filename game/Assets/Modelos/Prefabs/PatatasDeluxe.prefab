@@ -11,22 +11,22 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e4e6b2711ad662143af9cad3537fa6ad,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e4e6b2711ad662143af9cad3537fa6ad,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1793.95
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e4e6b2711ad662143af9cad3537fa6ad,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.06
+      value: -1.1152182
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e4e6b2711ad662143af9cad3537fa6ad,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -848.5922
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e4e6b2711ad662143af9cad3537fa6ad,
         type: 3}
@@ -36,17 +36,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e4e6b2711ad662143af9cad3537fa6ad,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e4e6b2711ad662143af9cad3537fa6ad,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e4e6b2711ad662143af9cad3537fa6ad,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e4e6b2711ad662143af9cad3537fa6ad,
         type: 3}
@@ -111,6 +111,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: -5405987188779702465}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e4e6b2711ad662143af9cad3537fa6ad,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8728775615122533864}
   m_SourcePrefab: {fileID: 100100000, guid: e4e6b2711ad662143af9cad3537fa6ad, type: 3}
 --- !u!1 &8342402051648085088 stripped
 GameObject:
@@ -139,3 +143,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.16306481, y: 0.19091175, z: 0.18391757}
   m_Center: {x: -0.00036384165, y: 0.06234444, z: 0.011253707}
+--- !u!114 &8728775615122533864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8342402051648085088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8741a7bb79dc59459848f73989ceb2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

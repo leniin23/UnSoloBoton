@@ -47,6 +47,7 @@ public class RayCast : MonoBehaviour
             // Si se pulsa la tecla e sobre el objeto...
             if (isMousePressed)
             {
+                Debug.Log("Jolimes");
                 //Si no estamos mirando a nada interesante no tenemos que hacer nada
                 if(lookAt == null)
                 {
@@ -56,6 +57,10 @@ public class RayCast : MonoBehaviour
                 //Interactuamos con el objeto
                 lookAt.PickUp(transform, grabedBody);
                 //objAgarrado = hit.transform;       // Me quedo la referencia al objeto agarrado
+            }
+            else
+            {
+                Debug.Log(KeyCode.Mouse0);
             }
         }
         else

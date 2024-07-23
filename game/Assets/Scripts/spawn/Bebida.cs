@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using spawn;
 using UnityEngine;
 
-public class Bebida : MonoBehaviour
+public class Bebida : MonoBehaviour, IFood
 {
     private bool bandejaMove;
     private float timer;
@@ -41,8 +41,10 @@ public class Bebida : MonoBehaviour
         {
             bandeja = other.gameObject;
             gameObject.transform.parent = other.gameObject.transform;
-            other.gameObject.GetComponent<BandejaInfo>().setBebida();
+            other.gameObject.GetComponent<BandejaInfo>().setBebida(Number);
             bandejaMove = true;
         }
     }
+
+    public int Number { get; set; }
 }

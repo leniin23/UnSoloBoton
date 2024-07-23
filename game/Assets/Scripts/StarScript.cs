@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class StarScript : MonoBehaviour
 {
+    private static Camera scoreCamera;
     public static StarScript instance;
     // Start is called before the first frame update
     private int life = 10;
@@ -15,6 +16,8 @@ public class StarScript : MonoBehaviour
     public GameObject deadScreen;
     void Start()
     {
+        scoreCamera = GameObject.Find("Telecamara").GetComponent<Camera>();
+        scoreCamera.Render();
         halfStarSize = starColors.localScale.x*1.019f;
         if (instance == null) instance = this;
         else Destroy(this);
@@ -31,12 +34,13 @@ public class StarScript : MonoBehaviour
     
     public void OnNext(int value)
     {
-        Debug.Log("Value: " + value);
+        // Debug.Log("Value: " + value);
         if (value > 2) value = 1;
         life -= value;
         var size = starColors.localScale;
         var fullStarOffset = life % 2 != 0 ? 0.005 : 0f;
         starColors.position -= starColors.right * (halfStarSize * value);
+        scoreCamera.Render();
         /*if (life >= 0)
         {
             starColors.position += Vector3.back;

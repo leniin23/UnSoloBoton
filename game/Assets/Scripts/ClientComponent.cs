@@ -37,10 +37,15 @@ public class ClientComponent : MonoBehaviour, IPickable
     // c.Patatas 0, c.Deluxe 1, c.Nuggets 2
     // b.Colacoca 0, b.Nafta 1, c.Sprint 2
 
-
+    private Transform selfTransform;
+    
     // Start is called before the first frame update
     void Start()
     {
+
+
+        selfTransform = transform;
+        
         ganancias = 0;
         client = transform.Find("1_c").gameObject.GetComponent<SpriteRenderer>();
         targetCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -75,19 +80,23 @@ public class ClientComponent : MonoBehaviour, IPickable
         {
             if (estado == 1) //bajar
             {
-                transform.localPosition = new Vector3(
-                transform.localPosition.x,
-                transform.localPosition.y - speed * Time.deltaTime,
-                transform.localPosition.z);
-                if (transform.localPosition.y <= -4f) {tiempoCooldown = maxCooldown; estado = 3; }
+                var localPosition = selfTransform.localPosition;
+                localPosition = new Vector3(
+                    localPosition.x,
+                    localPosition.y - speed * Time.deltaTime,
+                    localPosition.z);
+                selfTransform.localPosition = localPosition;
+                if (selfTransform.localPosition.y <= -4f) {tiempoCooldown = maxCooldown; estado = 3; }
             }
             else if (estado == 2) //subir
             {
-                transform.localPosition = new Vector3(
+                var localPosition = selfTransform.localPosition;
+                localPosition = new Vector3(
                 transform.localPosition.x,
-                transform.localPosition.y + speed * Time.deltaTime,
-                transform.localPosition.z);
-                if (transform.localPosition.y >= 0) { estado = 0; }
+                localPosition.y + speed * Time.deltaTime,
+                localPosition.z);
+                selfTransform.localPosition = localPosition;
+                if (selfTransform.localPosition.y >= 0) { estado = 0; }
             }
             else if (estado == 3) //cooldown
             {
@@ -107,7 +116,7 @@ public class ClientComponent : MonoBehaviour, IPickable
             tiempoLimite -= Time.deltaTime;
             if (tiempoLimite <= 0)
             {
-                Irse(false,2);
+                Irse(false);
                 rectanguloTimer.gameObject.SetActive(false);
             }
             if (!angryBool && tiempoLimite < (maxTime * 0.45))
@@ -183,7 +192,8 @@ public class ClientComponent : MonoBehaviour, IPickable
         if(info == null) return;
         //Debug.Log("hOLIS 2");
         var isSameInfo = info.hamburguesa == hamburguesa && info.complemtentos == complemento && info.bebida == bebida;
-        
+        Debug.Log(info.hamburguesa + "_ " + info.complemtentos + "_ " + info.bebida);
+        Debug.Log(hamburguesa + "_ " + complemento + "_ " + bebida);
         RayCast.instance.LetGo();
         itemInHand.GetTransform().SetParent(transform);
         itemInHand.PickUp(transform);

@@ -13,8 +13,7 @@ public class GameComponent : MonoBehaviour
     [SerializeField] private Camera camJugador;
     [SerializeField] private Camera camMinijuego;
     [SerializeField] GameObject optionsMenu;
-    [SerializeField] GameObject dialogBox;
-    public static bool canPause;
+    [SerializeField] GameObject dialogBox; public static bool canPause;
 
     void Start()
     {

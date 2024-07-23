@@ -6,18 +6,22 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private bool pause;
     
     private CharacterController controller;
-    private Camera playerCamera;
-    private bool pause;
+    private Camera cam;
+    private Transform cameraTransform;
     
     [SerializeField] public Vector3 speed;
     [SerializeField] private Vector3 rotation  = Vector3.zero;
-    
+
     [Space (15)]
     [Header("Ground Movement")]
     [SerializeField] public float walkingSpeed;
     [SerializeField] public float runSpeed;
+    [Tooltip("Speed while crouching")]
+    [SerializeField] public float crouchedSpeed;
+    [Tooltip("How much the character crouches/de-crouches each frame")]
     [SerializeField] public float crouchingSpeed;
     [SerializeField] private float minHeight, maxHeight;
     private bool isCrouching;
@@ -42,12 +46,15 @@ public class PlayerController : MonoBehaviour
     private float timerBob = 0f;
     private Vector2 prevPosition = Vector2.zero;
     private float lastSpeedBob = 0f;
-    
+    private bool canRotate = true;
+    //private bool cursorVisible = true;
+
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponentInChildren<CharacterController>();
-        playerCamera = GetComponentInChildren<Camera>();
+        cam = GetComponentInChildren<Camera>();
+        cameraTransform = cam.transform;
         
         speed = Vector3.zero;
         bobSpeed = 10;
@@ -60,64 +67,74 @@ public class PlayerController : MonoBehaviour
     {
         if(pause)   return;
         
-        ManageInput(ref speed);
-        ManageRotation();
         
-        controller.Move(speed * Time.deltaTime);
-        Rotate();
-        HeadBobble();
-
-        ApplyHalfAcceleration(ref speed);
-        transform.position = controller.transform.position;
-
-        var height = controller.height;
-        if (isCrouching)
+        if (canRotate)            // Rota solo tiene permiso para hacerlo
         {
-            if (height > minHeight)
-            {
-                controller.height -= Time.deltaTime * 10f;
-                if (controller.height < minHeight) controller.height = minHeight;
-            }
-        }else if (height < maxHeight)
-        {
-            controller.height += Time.deltaTime * 10f;
-            if (controller.height > maxHeight) controller.height = maxHeight;
+            // ManageCrouch();
+            ManageMovement(ref speed);
+            Cursor.visible = false;
+            ManageRotation();
+
+            Rotate();
+
+            ApplyHalfAcceleration(ref speed);
+            controller.Move(speed * Time.deltaTime);
+            var tempPos = controller.transform.position;
+            tempPos.y = cameraTransform.position.y;
+            cameraTransform.position = tempPos;
+            // ApplyHalfAcceleration(ref speed);
+            HeadBobble();
         }
-        
-        
-        ApplyHalfAcceleration(ref speed);
 
-        if (transform.position.y < -10)
+
+        if (controller.transform.position.y < -10)
         {
-            var pos = new Vector3(-1812f, 1f, -910);
-            transform.position = pos;
+            var pos = new Vector3(0, 4.5f, 0);
+            // transform.position = pos;
             controller.transform.position = pos;
-            playerCamera.transform.position = pos;
+            cameraTransform.position = pos;
         
             Physics.SyncTransforms();
         }
     }
-    
+
+    private void ManageCrouch()
+    {
+        var height = controller.height;
+        
+        var crouch = Time.deltaTime * crouchingSpeed;
+        if (isCrouching)
+        {
+            if (!(height > minHeight)) return;
+
+            controller.height -= crouch;
+            if (controller.height < minHeight) controller.height = minHeight;
+        }else if (height < maxHeight)
+        {
+            controller.height += crouch;
+            if (controller.height > maxHeight) controller.height = maxHeight;
+        }
+    }
     
     private void HeadBobble()
     {
-        var position = transform.position;
+        var position = controller.transform.position;
         var realSpeed = (prevPosition - new Vector2(position.x, position.z))/Time.deltaTime;
         var realSpeedMag = (realSpeed.magnitude + lastSpeedBob)/2f;
         if(Mathf.Abs(realSpeed.x) > 0.1f || Mathf.Abs(realSpeed.y) > 0.1f)
         {
             //Player is moving
             timerBob += Time.deltaTime * bobSpeed;
-            var localPosition = playerCamera.transform.localPosition;
-            playerCamera.transform.localPosition = new Vector3(localPosition.x, defaultCameraHeight + Mathf.Sin(timerBob)  / 15f, localPosition.z);
+            var localPosition = cameraTransform.localPosition;
+            cameraTransform.localPosition = new Vector3(localPosition.x, defaultCameraHeight + Mathf.Sin(timerBob)  / 15f, localPosition.z);
         }
         else
         {
             //Idle
             timerBob = 0;
-            var localPosition = playerCamera.transform.localPosition;
+            var localPosition = cameraTransform.localPosition;
             localPosition = new Vector3(localPosition.x, Mathf.Lerp(localPosition.y, defaultCameraHeight, Time.deltaTime * bobSpeed), localPosition.z);
-            playerCamera.transform.localPosition = localPosition;
+            cameraTransform.localPosition = localPosition;
         }
 
         lastSpeedBob = realSpeedMag;
@@ -129,7 +146,7 @@ public class PlayerController : MonoBehaviour
      * Vertical and Horizontal axis, get converted to horizontal movement 
      * Space bar, gets converted into a jump if the controller is grounded
      */
-    private void ManageInput(ref Vector3 vel)
+    private void ManageMovement(ref Vector3 vel)
     {
         //GetAxisRaw returns 1 if pressing the corresponding buttons, 0 if not. (raw means there will be no smoothing, resulting in an immediate stop)
         var tempDir = (transform.forward * Input.GetAxisRaw("Vertical") + transform.right*Input.GetAxisRaw("Horizontal"));
@@ -139,10 +156,10 @@ public class PlayerController : MonoBehaviour
         
         if (controller.isGrounded)
         {
-            isCrouching = Input.GetAxisRaw("Fire1") > 0;
-            var isRunning = Input.GetAxis("Fire3") > 0 ? runSpeed :walkingSpeed;
-            if (isCrouching) isRunning = crouchingSpeed;
-            tempDir *= isRunning;
+            // isCrouching = Input.GetAxisRaw("Fire1") > 0;
+            // var speedMultiplier = Input.GetAxis("Fire3") > 0 ? runSpeed :walkingSpeed;
+            // if (isCrouching) speedMultiplier = crouchedSpeed;
+            tempDir *= walkingSpeed;
             
             vel.y = jumpSpeed * Input.GetAxis("Jump");
             
@@ -177,7 +194,7 @@ public class PlayerController : MonoBehaviour
         if (!controller.isGrounded)
         {
             //// GRAVITY
-            vel.y -= gravity * Time.deltaTime / 2f;
+            vel.y -= gravity * Time.deltaTime;
             
             //// AIR FRICTION
             
@@ -186,7 +203,7 @@ public class PlayerController : MonoBehaviour
             //This ensures the speed is evenly distributed throughout all directions
             
             var magnitude = Mathf.Sqrt(Mathf.Pow(vel.x, 2) + Mathf.Pow(vel.z, 2));
-            var newMagnitude = magnitude - (airFriction*Time.deltaTime / 2f);
+            var newMagnitude = magnitude - (airFriction*Time.deltaTime);
             if(newMagnitude > 0.001)    
             {
                 var k = magnitude / newMagnitude;
@@ -204,7 +221,7 @@ public class PlayerController : MonoBehaviour
     private void ManageRotation()
     {
         //Get current rotation
-        var rot = playerCamera.transform.rotation.eulerAngles;
+        var rot = cameraTransform.rotation.eulerAngles;
         var rotY = 0f;
         var rotX = 0f;
         if (Cursor.visible)
@@ -213,7 +230,7 @@ public class PlayerController : MonoBehaviour
             {
                 
                 //si se pulsa y no esta esccondido el raton, se esconde
-                //Cursor.visible = false; 
+                Cursor.visible = false; 
                 
                 
             }
@@ -230,7 +247,7 @@ public class PlayerController : MonoBehaviour
             
             //Si el raton esta escondido, se coloca en el centro para poder moverlo indefinidamente a los lados
             //Mouse.current.WarpCursorPosition(new Vector2(Screen.width / 2f, Screen.height / 2f));
-            //Cursor.lockState = CursorLockMode.Locked;
+            Cursor.lockState = CursorLockMode.Locked;
         }
         
         rot += new Vector3(rotX, rotY,0f);
@@ -265,13 +282,27 @@ public class PlayerController : MonoBehaviour
     private void Rotate()
     {
         transform.eulerAngles = new Vector3(0, rotation.y, 0);
-        playerCamera.transform.eulerAngles = rotation;
+        cameraTransform.eulerAngles = rotation;
     }
 
+    public void lockRotate()
+    {
+        canRotate = !canRotate;
+
+        if (canRotate)      // Si ahora puede rotar el cursor estará oculto
+        {
+            Cursor.visible = false;
+
+        } else if (!canRotate) {        // Si ahora no puede rotar el cursor estará visible
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+        }
+    }
     public void SetPause(bool state)
     {
         pause = state;
         RayCast.instance.SetPausa(state);
     }
-    
+
+
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using spawn;
 using UnityEngine;
 
 public class dispersor : MonoBehaviour
@@ -52,6 +53,7 @@ public class dispersor : MonoBehaviour
         
         SFXManager.instance.audioSource.PlayOneShot(Resources.Load<AudioClip>("SFX/box-crash"));
         objeto = Instantiate(objetosACrear[ingredient], position , transform.rotation);
+        objeto.GetComponent<IFood>().Number = ingredient;
     }
     
 }

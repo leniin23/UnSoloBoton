@@ -42,7 +42,7 @@ namespace DefaultNamespace
         public void PickUp(Transform father, IPickable other)
         {
             //Lock fathers movement
-            player = father.GetComponent<PlayerController>();
+            player = father.parent.GetComponent<PlayerController>();
             if(player == null) return;
             player.SetPause(true);
             //Time.timeScale = 1f;
