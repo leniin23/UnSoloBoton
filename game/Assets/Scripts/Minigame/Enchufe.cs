@@ -10,13 +10,16 @@ public class Enchufe : MonoBehaviour
 {
     [SerializeField] private Color color;
 
-    private static MachineManager manager;
+    private static MachineManager _manager;
+
+    private static readonly int EmissionColor = Shader.PropertyToID("_EmissionColor");
+
     // Start is called before the first frame update
     void Start()
     {
-        manager = transform.parent.parent.GetComponent<MachineManager>();
+        _manager = transform.parent.parent.GetComponent<MachineManager>();
         GetComponent<MeshRenderer>().material.color = color;
-        GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", color);
+        GetComponent<MeshRenderer>().material.SetColor(EmissionColor, color);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,7 +34,7 @@ public class Enchufe : MonoBehaviour
         if (!cable.isKinematic)
         {
             //Debug.Log("EXIT");
-            manager.TurnOffMainBulb(color);
+            _manager.TurnOffMainBulb(color);
         }
     }
     private void ProcessCollision(Collider other, bool exit = false)
@@ -44,13 +47,9 @@ public class Enchufe : MonoBehaviour
             {
                 return;
             }
-            if(manager.LightMainBulb(color))
+            if(_manager.LightMainBulb(color))
                 enchufe.Connect(transform.position);
         }
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

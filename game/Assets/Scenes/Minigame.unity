@@ -9898,6 +9898,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TelevisionTODO
       objectReference: {fileID: 0}
+    - target: {fileID: 7335800331375544224, guid: 7af9c4b3a3200aa46aae06f3d1d80fc4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.00014
+      objectReference: {fileID: 0}
     - target: {fileID: 7702083121837207160, guid: 7af9c4b3a3200aa46aae06f3d1d80fc4,
         type: 3}
       propertyPath: m_IsActive

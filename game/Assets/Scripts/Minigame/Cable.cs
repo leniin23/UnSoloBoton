@@ -15,6 +15,7 @@ public class Cable : MonoBehaviour
     private LineRenderer lineRenderer;
     public Color color;
     public bool IsConnected { get; private set; }
+    private Vector3 lastPos = Vector3.zero;
     
     // Start is called before the first frame update
     void Start()
@@ -34,8 +35,8 @@ public class Cable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //lineRenderer.SetPositions(new Vector3[]{origin.position, head.position});
-        Restructure();
+        if(Vector3.Distance(lastPos, transform.position) >= 0.5f)
+            Restructure();
         if(!IsConnected) PullHead();
     }
 
@@ -64,7 +65,7 @@ public class Cable : MonoBehaviour
         var nPoints = Mathf.CeilToInt(distance.magnitude*10) * 5;
         //var points = new Vector3()[nPoints];
         lineRenderer.positionCount = nPoints;
-        for (int i = 0; i < nPoints; i++)
+        for (var i = 0; i < nPoints; i++)
         {
             var progress = i / (float) (nPoints-1);
             var x = Mathf.Lerp(originPosition.x, headPosition.x, progress);

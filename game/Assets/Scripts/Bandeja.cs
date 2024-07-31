@@ -6,18 +6,19 @@ namespace DefaultNamespace
     public class Bandeja : MonoBehaviour, IPickable
     {
         private Rigidbody body;
-        private Collider collider;
+        private Collider selfCollider;
         private bool canBeTaken;
+        private Transform selfTransform;
         public void PickUp(Transform father, IPickable other)
         {
             if(!canBeTaken) return;
             canBeTaken = false;
             RayCast.instance.LetGo();
             RayCast.instance.PickUp(this);
-            transform.SetParent(father);
-            transform.localPosition = Vector3.zero;
-            transform.rotation = Quaternion.Euler(0, 90, 0);
-            transform.position += father.forward*0.75f - father.right*0.7f + father.up*0.35f;
+            selfTransform.SetParent(father);
+            selfTransform.localPosition = Vector3.zero;
+            selfTransform.rotation = Quaternion.Euler(0, 90, 0);
+            selfTransform.position += father.forward*0.75f - father.right*0.7f + father.up*0f;
             //collider = transform.GetComponent<Collider>();
             //collider.isTrigger = true;
             body.isKinematic = true;
@@ -27,7 +28,7 @@ namespace DefaultNamespace
         {
             canBeTaken = true;
             body = transform.GetComponent<Rigidbody>();
-            collider = transform.GetComponent<Collider>();
+            selfCollider = transform.GetComponent<Collider>();
             if (body == null)
             {
                 body = gameObject.AddComponent<Rigidbody>();
@@ -35,8 +36,9 @@ namespace DefaultNamespace
 
             body.isKinematic = false;
             body.useGravity = true;
-            collider.isTrigger = false;
+            selfCollider.isTrigger = false;
 
+            selfTransform = transform;
         }
 
         public void LetGo()
@@ -44,8 +46,9 @@ namespace DefaultNamespace
             //Debug.Log("a");
             if(!this) return;
             //transform.rotation = Quaternion.identity;
-            transform.position = transform.parent.position + transform.parent.forward + transform.parent.up*0.35f;
-            transform.parent = null;
+            var parent = selfTransform.parent;
+            selfTransform.position = transform.parent.position + parent.forward + parent.up*0.35f;
+            selfTransform.parent = null;
             body.isKinematic = false;
             canBeTaken = true;
             //collider.isTrigger = false;

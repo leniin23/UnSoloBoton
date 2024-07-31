@@ -6,6 +6,7 @@ using UnityEngine;
 public class RaycastCables : MonoBehaviour
 {
     public static RaycastCables instance;
+    private Camera minigameCamera;
     private Cable cable;
     public float ratio = 0.08f;
 
@@ -20,18 +21,15 @@ public class RaycastCables : MonoBehaviour
         {
             Destroy(this);
         }
+
+        minigameCamera = GameObject.Find("Main Camera 2").GetComponent<Camera>();
     }
     GameObject GetGameObjectAtPosition()
     {
         RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit))
-        {
-            //Debug.Log("found " + hit.collider.gameObject + " at distance: " + hit.distance);
-            return hit.collider.gameObject;
-        }
-        else
-            return null;
+        var ray = minigameCamera.ScreenPointToRay(Input.mousePosition);
+        return Physics.Raycast(ray, out hit) ?
+            hit.collider.gameObject : null;
     }
     // Update is called once per frame
     void Update()
@@ -40,7 +38,10 @@ public class RaycastCables : MonoBehaviour
         {
             var obj = GetGameObjectAtPosition();
             if(obj == null) return;
-            if(obj.transform.parent == null)    return;
+            if(obj.transform.parent == null)
+            {
+                return;
+            }
             cable = obj.transform.parent.GetComponent<Cable>();
             if(cable != null)
             {
@@ -54,16 +55,14 @@ public class RaycastCables : MonoBehaviour
             cable.Release();
             assigned = false;
             cable = null;
-        } else
-        {
-            if(assigned)
-            {
-                //var movement = new Vector3(Input.GetAxisRaw("Mouse X")/Screen.currentResolution.width, Input.GetAxisRaw("Mouse Y")/Screen.currentResolution.width);
-                var movement = Camera.main!.ScreenToWorldPoint(Input.mousePosition);
-                movement.z = -1f;
-                cable.Move(movement);
-            }
-                //cable.Move(new Vector3(Input.mousePosition.x, Input.mousePosition.y,0));
         }
+        else if(assigned)
+        {
+            //var movement = new Vector3(Input.GetAxisRaw("Mouse X")/Screen.currentResolution.width, Input.GetAxisRaw("Mouse Y")/Screen.currentResolution.width);
+            var movement = minigameCamera.ScreenToWorldPoint(Input.mousePosition);
+            movement.z = -1f;
+            cable.Move(movement); 
+        }
+
     }
 }
