@@ -22,28 +22,37 @@ public class RaycastCables : MonoBehaviour
             Destroy(this);
         }
 
-        minigameCamera = GameObject.Find("Main Camera 2").GetComponent<Camera>();
+        minigameCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
-    GameObject GetGameObjectAtPosition()
+    bool GetGameObjectAtPosition(out Transform obTransform)
     {
-        RaycastHit hit;
         var ray = minigameCamera.ScreenPointToRay(Input.mousePosition);
-        return Physics.Raycast(ray, out hit) ?
-            hit.collider.gameObject : null;
+        if(Physics.Raycast(ray, out var hit))
+        {
+            obTransform = hit.collider.transform;
+            return true;
+        }
+        else
+        {
+            obTransform = null;
+            return false;
+        }
     }
+    
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            var obj = GetGameObjectAtPosition();
-            if(obj == null) return;
-            if(obj.transform.parent == null)
+            if (!GetGameObjectAtPosition(out var obj)) return;
+            
+            if (obj.transform.parent == null)
             {
                 return;
             }
+
             cable = obj.transform.parent.GetComponent<Cable>();
-            if(cable != null)
+            if (cable != null)
             {
                 cable.Grab();
                 assigned = true;

@@ -35,7 +35,7 @@ public class Cable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Vector3.Distance(lastPos, transform.position) >= 0.5f)
+        if(Vector3.Distance(lastPos, transform.position) >= 0.8f)
             Restructure();
         if(!IsConnected) PullHead();
     }
@@ -62,7 +62,7 @@ public class Cable : MonoBehaviour
         var originPosition = origin.position;
         var distance = new Vector2(headPosition.x - originPosition.x, headPosition.y - originPosition.y);
 
-        var nPoints = Mathf.CeilToInt(distance.magnitude*10) * 5;
+        var nPoints = Mathf.CeilToInt(distance.magnitude*10) * 2;
         //var points = new Vector3()[nPoints];
         lineRenderer.positionCount = nPoints;
         for (var i = 0; i < nPoints; i++)
@@ -73,6 +73,7 @@ public class Cable : MonoBehaviour
             var y = Mathf.Cos(t/distance.x*Mathf.PI+Mathf.PI/2f)*distance.magnitude/10f+t/distance.x*distance.y + originPosition.y;
             lineRenderer.SetPosition(i,new Vector3(x,y,0));
         }
+        // lineRenderer.Simplify(0.01f);
     }
 
     public void Connect(Vector3 position)

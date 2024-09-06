@@ -1,11 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using System;
+using Clientss;
 using DefaultNamespace;
 using Unity.VisualScripting;
 using UnityEngine;
-using Object = UnityEngine.Object;
-using Random = System.Random;
 
 public class ClientComponent : MonoBehaviour, IPickable
 {
@@ -15,12 +11,13 @@ public class ClientComponent : MonoBehaviour, IPickable
     public static Camera targetCamera;
     Vector3 vec = new Vector3(0f, -90f, 0f);
     public int varId;
-    private Random _random = new Random();
+    // private readonly Random random = new Random();
     private GameObject pedido;
     private GameObject rectanguloTimer;
 
     public static int ganancias;
 
+    //Food timer related variables
     private float tiempoLimite;
     public float maxTime;
     public float timePercent;
@@ -49,9 +46,9 @@ public class ClientComponent : MonoBehaviour, IPickable
         ganancias = 0;
         client = transform.Find("1_c").gameObject.GetComponent<SpriteRenderer>();
         targetCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
-        pedido = transform.GetChild(0).gameObject;
-        rectanguloTimer = transform.GetChild(1).GetChild(0).gameObject;
-        varId = _random.Next(6);
+        pedido = transform.GetChild(0).GetChild(0).gameObject;
+        rectanguloTimer = transform.GetChild(1).GetChild(0).GetChild(0).gameObject;
+        varId = UnityEngine.Random.Range(0, 6);
         //Debug.LogWarning(varId);
         CambiarSprite(varId);
         NuevoPedido();
@@ -104,7 +101,7 @@ public class ClientComponent : MonoBehaviour, IPickable
                 tiempoCooldown -= Time.deltaTime;
                 if (tiempoCooldown <= 0)
                 {
-                    varId = _random.Next(6);
+                    varId = Random.Range(0, 6);
                     CambiarSprite(varId);
                     NuevoPedido();
                     estado = 2;
@@ -151,9 +148,9 @@ public class ClientComponent : MonoBehaviour, IPickable
         {
             child.gameObject.SetActive(false);
         }
-        hamburguesa = _random.Next(0, 3);
-        complemento = _random.Next(3, 6);
-        bebida = _random.Next(6, 9);
+        hamburguesa = Random.Range(0, 3);
+        complemento = Random.Range(3, 6);
+        bebida = Random.Range(6, 9);
         pedido.transform.GetChild(hamburguesa).gameObject.SetActive(true);
         pedido.transform.GetChild(complemento).gameObject.SetActive(true);
         pedido.transform.GetChild(bebida).gameObject.SetActive(true);
@@ -208,6 +205,11 @@ public class ClientComponent : MonoBehaviour, IPickable
         Irse(isSameInfo,1);
     }
 
+    public void ChangeState(IClientState newState)
+    {
+        
+    }
+    
     public void LetGo()
     {
         //throw new NotImplementedException();

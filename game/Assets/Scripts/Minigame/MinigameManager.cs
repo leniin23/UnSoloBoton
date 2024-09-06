@@ -7,6 +7,10 @@ namespace Minigame
     public class MinigameManager : MonoBehaviour
     {
         public static MinigameManager instance;
+        private Transform raycast;
+        private Transform machineManager;
+        bool isInMinigame { get; set;}
+        private Machine machine;
 
         private void Start()
         {
@@ -15,12 +19,29 @@ namespace Minigame
             { 
                 Destroy(this);
             }
+            RestartGame();
+
         }
 
-        public void StartGame(Machine machine)
+        public void StartGame(Machine inMachine)
         {
-            MachineManager.instance.ResetColors(machine);
+            machine = inMachine;
+            MachineManager.instance.ResetColors();
             CableManager.instance.ResetCables();
+            FindObjectOfType<RaycastCables>().enabled = true;
+        }
+
+        private void RestartGame()
+        {
+            GameObject.FindObjectOfType<RaycastCables>().enabled = false;
+            GameObject.FindObjectOfType<RaycastCables>().enabled = true;
+            isInMinigame = false;
+        }
+        
+        public void EndGame(int ingredient)
+        {
+            RestartGame();
+            machine.ServeIngredient(ingredient);
         }
     }
 }

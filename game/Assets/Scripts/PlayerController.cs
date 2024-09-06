@@ -79,9 +79,9 @@ public class PlayerController : MonoBehaviour
 
             ApplyHalfAcceleration(ref speed);
             controller.Move(speed * Time.deltaTime);
-            var tempPos = controller.transform.position;
-            tempPos.y = cameraTransform.position.y;
-            cameraTransform.position = tempPos;
+            // var tempPos = controller.transform.position;
+            // tempPos.y = cameraTransform.position.y;
+            // cameraTransform.position = tempPos;
             // ApplyHalfAcceleration(ref speed);
             HeadBobble();
         }
@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
             var pos = new Vector3(0, 4.5f, 0);
             // transform.position = pos;
             controller.transform.position = pos;
-            cameraTransform.position = pos;
+            // cameraTransform.position = pos;
         
             Physics.SyncTransforms();
         }
@@ -285,7 +285,7 @@ public class PlayerController : MonoBehaviour
         cameraTransform.eulerAngles = rotation;
     }
 
-    public void lockRotate()
+    public void LockRotate()
     {
         canRotate = !canRotate;
 

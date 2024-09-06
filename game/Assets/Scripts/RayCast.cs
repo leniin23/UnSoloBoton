@@ -22,6 +22,7 @@ public class RayCast : MonoBehaviour
     void Update()
     {
         if(Pausa)   return;
+        var isLookingAtSomething = false;
         //Si el objeto esta agarrado y se pulsa la E, se suelta el objeto y no se lanzan rayos
         /*if (firstHit && Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -41,12 +42,12 @@ public class RayCast : MonoBehaviour
         // Si el rayo colisiona con un objeto...
         if (Physics.Raycast(cam.position + cam.forward*0.2f, cam.forward, out hit, distRayo))
         {
-            //Actualizamos a que estamos mirando
-            lookAt = hit.transform.GetComponent<IPickable>();
-            //Debug.Log("Name: " + lookAt?.GetTransform().name);
+            isLookingAtSomething = hit.collider.CompareTag("Interactable");
             // Si se pulsa la tecla e sobre el objeto...
             if (isMousePressed)
             { 
+                //Actualizamos a que estamos mirando
+                lookAt = hit.transform.GetComponent<IPickable>();
                 //Si no estamos mirando a nada interesante no tenemos que hacer nada
                 if(lookAt == null)
                 {
@@ -54,17 +55,21 @@ public class RayCast : MonoBehaviour
                     return;
                 }
                 //Interactuamos con el objeto
-                lookAt.PickUp(transform, grabedBody);
+                lookAt.PickUp(transform.parent, grabedBody);
+                // isLookingAtSomething = false;
                 //objAgarrado = hit.transform;       // Me quedo la referencia al objeto agarrado
             }
         }
         else
-        {
-            if(isMousePressed)  LetGo();
+        { 
+            if(isMousePressed)
+            {
+                LetGo();
+            }
             lookAt = null;
         }
         
-        manoInteract.SetActive(lookAt != null);
+        manoInteract.SetActive(isLookingAtSomething && !Pausa);
         
     }
 

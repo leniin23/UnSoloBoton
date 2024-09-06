@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using Minigame;
 using UnityEngine;
 using Random = System.Random;
 
@@ -15,13 +16,11 @@ namespace DefaultNamespace
         private List<List<Color>> colorList;
         private List<Color> mainColors;
         private static Random _random = new Random();
-        private Machine callback;
         private Color[] lightbulbColors;
 
 
-        public void ResetColors(Machine callbackIn)
+        public void ResetColors()
         {
-            callback = callbackIn;
             mainColors.Clear();
             CalculateRandomColors();
         }
@@ -102,13 +101,14 @@ namespace DefaultNamespace
                     ingredient = i;
                     //Debug.LogWarning("Has puesto un " + ingredient);
                     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!AQUI VA EL CODIGO ; 0 = ternera; 1 = vegetal; 2 = pollo
-                    callback.ServeIngredient(ingredient);
+                    MinigameManager.instance.EndGame(ingredient);
                 }
             }
         }
         
         private void CalculateRandomColors()
         {
+            Debug.Log("Recoloring");
             List<int> numbers = new List<int>();
             for (int i = 0; i < possibleColors.Count; i++)
             {
