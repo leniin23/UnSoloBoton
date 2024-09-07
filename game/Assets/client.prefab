@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fef6722c4f975f4da77730e11e6ae66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  route: []
   variacionesClientes:
   - {fileID: 21300000, guid: 28474b30df8f45348837b69dda172186, type: 3}
   - {fileID: 21300000, guid: 850122d95ad3f12439af8a23409b91d8, type: 3}

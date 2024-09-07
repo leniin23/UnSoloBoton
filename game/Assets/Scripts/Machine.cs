@@ -11,6 +11,7 @@ namespace DefaultNamespace
         [SerializeField] private int type;
         [SerializeField] private dispersor spawner;
         private PlayerController player;
+        private Vector3 playerCameraPosition;
 
         //esto se podría hacer más optimo lo sé xd
         private static GameObject hTERNERA;
@@ -59,6 +60,7 @@ namespace DefaultNamespace
             
             var transform1 = _playerCamera.transform;
             var transform2 = _gameCamera.transform;
+            playerCameraPosition = transform1.position;
             transform1.position = transform2.position;
             _playerCamera.orthographic = true;
             _playerCamera.orthographicSize = 5f;
@@ -84,7 +86,7 @@ namespace DefaultNamespace
             // _gameCamera.enabled = !_gameCamera.enabled;
             _playerCamera.orthographic = false;
             _playerCamera.farClipPlane = 1000;
-            _playerCamera.transform.position = player.transform.position;
+            _playerCamera.transform.position = playerCameraPosition;
             player.SetPause(false);
         }
 

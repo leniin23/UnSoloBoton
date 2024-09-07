@@ -8,6 +8,8 @@ public class StarScript : MonoBehaviour
 {
     private static Camera scoreCamera;
     public static StarScript instance;
+    public static int profit;
+    
     // Start is called before the first frame update
     private int life = 10;
     [SerializeField] private float halfStarSize;
@@ -16,6 +18,8 @@ public class StarScript : MonoBehaviour
     public GameObject deadScreen;
     void Start()
     {
+        profit = 0;
+        
         scoreCamera = GameObject.Find("Telecamara").GetComponent<Camera>();
         scoreCamera.Render();
         halfStarSize = starColors.localScale.x*1.019f;

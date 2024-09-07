@@ -1,4 +1,4 @@
-﻿namespace Clientss
+﻿namespace Clients
 {
     public interface IClientState
     {

@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 
-namespace Clientss
+namespace Clients
 {
     public class ClientStrollState: IClientState
     {
         private Transform clientTransform;
         private ClientComponent clientComponent;
-        private Vector3[] route;
 
         private int step;
         private readonly float speed = 5f;
@@ -19,11 +18,8 @@ namespace Clientss
         /// <param name="argc">Number of objects sent</param>
         public void OnEnter(object[] argv, int argc)
         {
-            Debug.Assert(argc == 3, "Wrong number of arguments were passed to the client component stroll state!");
-
             clientComponent = argv[0] as ClientComponent;
             clientTransform = argv[1] as Transform;
-            route = argv[2] as Vector3[];
 
             step = 0;
         }
@@ -31,15 +27,15 @@ namespace Clientss
         public void OnUpdate(float delta)
         {
             var position = clientTransform.position;
-            if (Vector3.Distance(position, route[step]) <= 0.001f)
+            if (Vector3.Distance(position, clientComponent.route[step]) <= 0.001f)
             {
                 step++;
-                if (step == route.Length)
+                if (step == clientComponent.route.Length)
                 {
                     clientComponent.ChangeState(new ClientStrollState());
                 }
             }
-            var newPosition = position + (route[step] - position).normalized * delta * speed;
+            var newPosition = position + (clientComponent.route[step] - position).normalized * delta * speed;
             clientTransform.position = newPosition;
         }
 

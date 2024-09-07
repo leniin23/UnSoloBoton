@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Clients;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,7 +18,7 @@ public class AnuncioComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        texto.SetText("GANANCIAS: " + ClientComponent.ganancias + " EUROS");
+        texto.SetText("GANANCIAS: " + StarScript.profit + " EUROS");
     }
 
     public void Salir()

@@ -48,7 +48,7 @@ public class GameComponent : MonoBehaviour
             null
         }, new Action[]
         {
-            null, null, null, null, null, null,null, null,null, null, null, null, null, null, null, null, null, StartGameAfterIntro
+            null, null, null, null, null, null, null, null,null, null, null, null, null, null, null, null, null, StartGameAfterIntro
         })); ;
     }
 
